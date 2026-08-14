@@ -15,6 +15,7 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
      */
     public JFrmSistemaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null); // ← Centra la ventana al abrirse
     }
 
     /**
@@ -48,28 +49,58 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistena de Alquileres GuanaRenta");
+        setTitle("Sistema de Alquileres GuanaRenta");
         setResizable(false);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prop.png"))); // NOI18N
         btnPropietarios.setText("Propietarios");
+        btnPropietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPropietariosActionPerformed(evt);
+            }
+        });
 
         btnViviendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vivienda.png"))); // NOI18N
         btnViviendas.setText("Viviendas");
+        btnViviendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViviendasActionPerformed(evt);
+            }
+        });
 
         btnInquilinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/inquilino.png"))); // NOI18N
         btnInquilinos.setText("Inquilinos");
+        btnInquilinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInquilinosActionPerformed(evt);
+            }
+        });
 
         btnAlquileres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alquiler.png"))); // NOI18N
         btnAlquileres.setText("Alquileres");
+        btnAlquileres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlquileresActionPerformed(evt);
+            }
+        });
 
         btnMensualidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensualidad.png"))); // NOI18N
         btnMensualidades.setText("Mensualidades");
+        btnMensualidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMensualidadesActionPerformed(evt);
+            }
+        });
 
         btnGanancias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ganancias.png"))); // NOI18N
         btnGanancias.setText("Ganancias");
+        btnGanancias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGananciasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -132,6 +163,36 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropietariosActionPerformed
+        DlgMainPropietario dlg = new DlgMainPropietario(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnPropietariosActionPerformed
+
+    private void btnViviendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViviendasActionPerformed
+        DlgMainVivienda dlg = new DlgMainVivienda(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnViviendasActionPerformed
+
+    private void btnInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInquilinosActionPerformed
+        DlgMainInquilinos dlg = new DlgMainInquilinos(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnInquilinosActionPerformed
+
+    private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
+        DlgMainAlquileres dlg = new DlgMainAlquileres(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnAlquileresActionPerformed
+
+    private void btnMensualidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensualidadesActionPerformed
+        DlgMensualidades dlg = new DlgMensualidades(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnMensualidadesActionPerformed
+
+    private void btnGananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGananciasActionPerformed
+        DlgGanancias dlg = new DlgGanancias(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnGananciasActionPerformed
 
     /**
      * @param args the command line arguments
