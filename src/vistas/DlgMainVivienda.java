@@ -39,6 +39,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         lblCantPropietarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro de Viviendas");
 
         txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
