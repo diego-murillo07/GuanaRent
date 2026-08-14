@@ -180,7 +180,8 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnInquilinosActionPerformed
 
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
-        // TODO add your handling code here:
+        DlgMainAlquileres dlg = new DlgMainAlquileres(this, true);
+        dlg.setVisible(true);
     }//GEN-LAST:event_btnAlquileresActionPerformed
 
     private void btnMensualidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensualidadesActionPerformed
