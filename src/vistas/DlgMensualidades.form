@@ -182,10 +182,10 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblFechaActual">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Fecha actual:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Fecha actual:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbMesGenerar">
@@ -214,28 +214,28 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaActual1">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Mes:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mes:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaActual2">
               <Properties>
+                <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtAnioGenerar">
             </Component>
             <Component class="javax.swing.JButton" name="btnGenerar">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Generar"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Generar"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerarActionPerformed"/>
@@ -274,7 +274,7 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnGenerar1" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnMostrar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="131" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -293,7 +293,7 @@
                           <Component id="txtAnioMostrar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnGenerar1" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Component id="btnMostrar" min="-2" pref="32" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -301,29 +301,29 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="lblFechaActual3">
               <Properties>
+                <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JButton" name="btnGenerar1">
+            <Component class="javax.swing.JButton" name="btnMostrar">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Mostrar"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mostrar"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGenerar1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMostrarActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="lblFechaActual5">
               <Properties>
+                <Property name="text" type="java.lang.String" value="Mes:"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Arial" size="12" style="3"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mes:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="cmbMesGenerar1">
@@ -356,18 +356,18 @@
         </Container>
         <Component class="javax.swing.JLabel" name="lblFechaActual6">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Filtrar por:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Filtrar por:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkInquilino">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Inquilino"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Inquilino"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkInquilinoActionPerformed"/>
@@ -375,10 +375,10 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkMes">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Mes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Mes"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkMesActionPerformed"/>
@@ -386,10 +386,10 @@
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkAnio">
           <Properties>
+            <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="A&#xf1;o"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkAnioActionPerformed"/>

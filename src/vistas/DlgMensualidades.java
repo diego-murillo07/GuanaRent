@@ -21,10 +21,11 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
     /**
      * Creates new form DlgMensualidades
+     *
      * @param parent
      * @param modal
      */
-     public DlgMensualidades(java.awt.Frame parent, boolean modal) {
+    public DlgMensualidades(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         configurarModuloMensualidades();
@@ -35,22 +36,22 @@ public class DlgMensualidades extends javax.swing.JDialog {
      */
     private void configurarModuloMensualidades() {
 
-    LocalDate hoy = LocalDate.now();
-    datePicker1.setDate(hoy);
-    datePicker1.setEnabled(false);
+        LocalDate hoy = LocalDate.now();
+        datePicker1.setDate(hoy);
+        datePicker1.setEnabled(false);
 
-    // Configurar DatePicker con la fecha actual
-    datePicker1.setDate(hoy);
-    datePicker1.setEnabled(false);
+        // Configurar DatePicker con la fecha actual
+        datePicker1.setDate(hoy);
+        datePicker1.setEnabled(false);
 
-    // Colocar el año actual
-    txtAnioGenerar.setText(String.valueOf(hoy.getYear()));
-    txtAnioMostrar.setText(String.valueOf(hoy.getYear()));
+        // Colocar el año actual
+        txtAnioGenerar.setText(String.valueOf(hoy.getYear()));
+        txtAnioMostrar.setText(String.valueOf(hoy.getYear()));
 
-    // Mostrar todas las mensualidades al abrir
-    configurarFiltroTexto();
-    mostrarTabla(GuanaRent.mostrarMensualidades());
-}
+        // Mostrar todas las mensualidades al abrir
+        configurarFiltroTexto();
+        mostrarTabla(GuanaRent.mostrarMensualidades());
+    }
 
     /**
      * Genera las mensualidades del mes y año seleccionados.
@@ -110,90 +111,89 @@ public class DlgMensualidades extends javax.swing.JDialog {
     }
 
     /**
-     * Aplica los filtros seleccionados mediante los JCheckBox.
-     * Si no se selecciona ningún filtro, muestra todos los registros.
+     * Aplica los filtros seleccionados mediante los JCheckBox. Si no se
+     * selecciona ningún filtro, muestra todos los registros.
      */
-      
     private void aplicarFiltro() {
 
-    String texto = txtBuscar.getText().trim().toLowerCase();
+        String texto = txtBuscar.getText().trim().toLowerCase();
 
-    // Si no hay ningún filtro seleccionado
-    if (!chkInquilino.isSelected()
-            && !chkMes.isSelected()
-            && !chkAnio.isSelected()) {
+        // Si no hay ningún filtro seleccionado
+        if (!chkInquilino.isSelected()
+                && !chkMes.isSelected()
+                && !chkAnio.isSelected()) {
 
-        mostrarTabla(GuanaRent.mostrarMensualidades());
-        return;
+            mostrarTabla(GuanaRent.mostrarMensualidades());
+            return;
+        }
+
+        ArrayList<Mensualidad> resultado = new ArrayList<>();
+
+        String[] meses = {
+            "enero",
+            "febrero",
+            "marzo",
+            "abril",
+            "mayo",
+            "junio",
+            "julio",
+            "agosto",
+            "septiembre",
+            "octubre",
+            "noviembre",
+            "diciembre"
+        };
+
+        for (Mensualidad m : GuanaRent.mostrarMensualidades()) {
+
+            boolean coincide = false;
+
+            // FILTRO POR INQUILINO
+            if (chkInquilino.isSelected()) {
+
+                if (m.getNomInquilino() != null
+                        && m.getNomInquilino()
+                                .toLowerCase()
+                                .contains(texto)) {
+
+                    coincide = true;
+                }
+            }
+
+            // FILTRO POR MES
+            if (chkMes.isSelected()) {
+
+                int mes = m.getMesCobro();
+
+                String numeroMes = String.valueOf(mes);
+                String nombreMes = meses[mes - 1];
+
+                if (numeroMes.equals(texto)
+                        || nombreMes.contains(texto)) {
+
+                    coincide = true;
+                }
+            }
+
+            // FILTRO POR AÑO
+            if (chkAnio.isSelected()) {
+
+                String anio = String.valueOf(
+                        m.getAnioActual()
+                );
+
+                if (anio.equals(texto)) {
+                    coincide = true;
+                }
+            }
+
+            if (coincide) {
+                resultado.add(m);
+            }
+        }
+
+        mostrarTabla(resultado);
     }
-
-    ArrayList<Mensualidad> resultado = new ArrayList<>();
-
-    String[] meses = {
-        "enero",
-        "febrero",
-        "marzo",
-        "abril",
-        "mayo",
-        "junio",
-        "julio",
-        "agosto",
-        "septiembre",
-        "octubre",
-        "noviembre",
-        "diciembre"
-    };
-
-    for (Mensualidad m : GuanaRent.mostrarMensualidades()) {
-
-        boolean coincide = false;
-
-        // FILTRO POR INQUILINO
-        if (chkInquilino.isSelected()) {
-
-            if (m.getNomInquilino() != null
-                    && m.getNomInquilino()
-                            .toLowerCase()
-                            .contains(texto)) {
-
-                coincide = true;
-            }
-        }
-
-        // FILTRO POR MES
-        if (chkMes.isSelected()) {
-
-            int mes = m.getMesCobro();
-
-            String numeroMes = String.valueOf(mes);
-            String nombreMes = meses[mes - 1];
-
-            if (numeroMes.equals(texto)
-                    || nombreMes.contains(texto)) {
-
-                coincide = true;
-            }
-        }
-
-        // FILTRO POR AÑO
-        if (chkAnio.isSelected()) {
-
-            String anio = String.valueOf(
-                    m.getAnioActual()
-            );
-
-            if (anio.equals(texto)) {
-                coincide = true;
-            }
-        }
-
-        if (coincide) {
-            resultado.add(m);
-        }
-    }
-
-    mostrarTabla(resultado);
-}
 
     /**
      * Carga los registros en la tabla.
@@ -234,28 +234,28 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
         jTable1.setModel(modelo);
     }
-    
+
     private void configurarFiltroTexto() {
 
-    txtBuscar.getDocument().addDocumentListener(
-            new DocumentListener() {
+        txtBuscar.getDocument().addDocumentListener(
+                new DocumentListener() {
 
-        @Override
-        public void insertUpdate(DocumentEvent e) {
-            aplicarFiltro();
-        }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                aplicarFiltro();
+            }
 
-        @Override
-        public void removeUpdate(DocumentEvent e) {
-            aplicarFiltro();
-        }
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                aplicarFiltro();
+            }
 
-        @Override
-        public void changedUpdate(DocumentEvent e) {
-            aplicarFiltro();
-        }
-    });
-}
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                aplicarFiltro();
+            }
+        });
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -277,7 +277,7 @@ public class DlgMensualidades extends javax.swing.JDialog {
         datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jPanel4 = new javax.swing.JPanel();
         lblFechaActual3 = new javax.swing.JLabel();
-        btnGenerar1 = new javax.swing.JButton();
+        btnMostrar = new javax.swing.JButton();
         lblFechaActual5 = new javax.swing.JLabel();
         cmbMesGenerar1 = new javax.swing.JComboBox<>();
         txtAnioMostrar = new javax.swing.JTextField();
@@ -307,8 +307,8 @@ public class DlgMensualidades extends javax.swing.JDialog {
         lblFechaActual2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual2.setText("Año:");
 
-        btnGenerar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         btnGenerar.setText("Generar");
+        btnGenerar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         btnGenerar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarActionPerformed(evt);
@@ -366,11 +366,11 @@ public class DlgMensualidades extends javax.swing.JDialog {
         lblFechaActual3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual3.setText("Año:");
 
-        btnGenerar1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        btnGenerar1.setText("Mostrar");
-        btnGenerar1.addActionListener(new java.awt.event.ActionListener() {
+        btnMostrar.setText("Mostrar");
+        btnMostrar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        btnMostrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerar1ActionPerformed(evt);
+                btnMostrarActionPerformed(evt);
             }
         });
 
@@ -395,7 +395,7 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 .addContainerGap(117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGenerar1)
+                .addComponent(btnMostrar)
                 .addGap(131, 131, 131))
         );
         jPanel4Layout.setVerticalGroup(
@@ -410,7 +410,7 @@ public class DlgMensualidades extends javax.swing.JDialog {
                     .addComponent(lblFechaActual3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAnioMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(btnGenerar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         lblFechaActual6.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -525,51 +525,51 @@ public class DlgMensualidades extends javax.swing.JDialog {
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         int mes = cmbMesGenerar.getSelectedIndex();
 
-    if (mes == 0) {
-        JOptionPane.showMessageDialog(
-                this,
-                "Seleccione un mes.",
-                "Validación",
-                JOptionPane.WARNING_MESSAGE
+        if (mes == 0) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un mes.",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        int anio;
+
+        try {
+            anio = Integer.parseInt(txtAnioGenerar.getText().trim());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Ingrese un año válido.",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        if (anio < 1000 || anio > 9999) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "El año debe tener 4 dígitos.",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE
+            );
+            return;
+        }
+
+        GuanaRent.generarMensualidades(mes, anio);
+
+        mostrarTabla(
+                GuanaRent.buscarMensualidades(mes, anio)
         );
-        return;
-    }
 
-    int anio;
-
-    try {
-        anio = Integer.parseInt(txtAnioGenerar.getText().trim());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(
-                this,
-                "Ingrese un año válido.",
-                "Validación",
-                JOptionPane.WARNING_MESSAGE
-        );
-        return;
-    }
-
-    if (anio < 1000 || anio > 9999) {
-        JOptionPane.showMessageDialog(
-                this,
-                "El año debe tener 4 dígitos.",
-                "Validación",
-                JOptionPane.WARNING_MESSAGE
-        );
-        return;
-    }
-
-    GuanaRent.generarMensualidades(mes, anio);
-
-    mostrarTabla(
-            GuanaRent.buscarMensualidades(mes, anio)
-    );
-    
     }//GEN-LAST:event_btnGenerarActionPerformed
 
-    private void btnGenerar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerar1ActionPerformed
+    private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
+        mostrarMensualidades();
+    }//GEN-LAST:event_btnMostrarActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         aplicarFiltro();
@@ -577,32 +577,32 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
     private void chkMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMesActionPerformed
         if (chkMes.isSelected()) {
-        chkInquilino.setSelected(false);
-        chkAnio.setSelected(false);
-    }
+            chkInquilino.setSelected(false);
+            chkAnio.setSelected(false);
+        }
 
-    txtBuscar.setText("");
-    aplicarFiltro();
+        txtBuscar.setText("");
+        aplicarFiltro();
     }//GEN-LAST:event_chkMesActionPerformed
 
     private void chkInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkInquilinoActionPerformed
         if (chkInquilino.isSelected()) {
-        chkMes.setSelected(false);
-        chkAnio.setSelected(false);
-    }
+            chkMes.setSelected(false);
+            chkAnio.setSelected(false);
+        }
 
-    txtBuscar.setText("");
-    aplicarFiltro();// TODO add your handling code here:
+        txtBuscar.setText("");
+        aplicarFiltro();// TODO add your handling code here:
     }//GEN-LAST:event_chkInquilinoActionPerformed
 
     private void chkAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAnioActionPerformed
         if (chkAnio.isSelected()) {
-        chkInquilino.setSelected(false);
-        chkMes.setSelected(false);
-    }
+            chkInquilino.setSelected(false);
+            chkMes.setSelected(false);
+        }
 
-    txtBuscar.setText("");
-    aplicarFiltro();
+        txtBuscar.setText("");
+        aplicarFiltro();
     }//GEN-LAST:event_chkAnioActionPerformed
 
     /**
@@ -649,7 +649,7 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGenerar;
-    private javax.swing.JButton btnGenerar1;
+    private javax.swing.JButton btnMostrar;
     private javax.swing.JCheckBox chkAnio;
     private javax.swing.JCheckBox chkInquilino;
     private javax.swing.JCheckBox chkMes;
