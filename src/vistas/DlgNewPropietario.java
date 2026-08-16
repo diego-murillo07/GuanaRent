@@ -49,29 +49,29 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos del Propietario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 12))); // NOI18N
 
-        lblCedula.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblCedula.setText("Cédula:");
+        lblCedula.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
-        lblNombre.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblNombre.setText("Nombre:");
+        lblNombre.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtNombre.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
-        lblGenero.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblGenero.setText("Género:");
+        lblGenero.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        cmbGenero.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
         cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        cmbGenero.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
-        lblDireccion.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblDireccion.setText("Direccción:");
+        lblDireccion.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtDireccion.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
-        lblTelefono.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblTelefono.setText("Télefono:");
+        lblTelefono.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         try {
             ftxtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
@@ -79,8 +79,8 @@ public class DlgNewPropietario extends javax.swing.JDialog {
             ex.printStackTrace();
         }
 
-        lblEmail.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblEmail.setText("E-mail:");
+        lblEmail.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
@@ -155,26 +155,41 @@ public class DlgNewPropietario extends javax.swing.JDialog {
                 .addGap(46, 46, 46))
         );
 
-        btnLimpiar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
-        btnGuardar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
+        btnGuardar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
-        btnCancelar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
+        btnCancelar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -211,6 +226,34 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        if (txtCedula.getText().trim().isEmpty() || txtNombre.getText().trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Cédula y nombre son obligatorios.");
+            return;
+        }
+        logica.Propietario p = new logica.Propietario(
+                txtCedula.getText().trim(), txtNombre.getText().trim(),
+                (String) cmbGenero.getSelectedItem(), txtDireccion.getText().trim(),
+                ftxtTelefono.getText().trim(), txtEmail.getText().trim());
+        if (datos.GuanaRent.agregarPropietario(p)) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Propietario guardado con éxito.");
+            dispose();
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtCedula.setText("");
+        txtNombre.setText("");
+        txtDireccion.setText("");
+        txtEmail.setText("");
+        ftxtTelefono.setText("");
+        cmbGenero.setSelectedIndex(0);
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments

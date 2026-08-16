@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Deilyn Medrano
@@ -16,6 +19,21 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     public DlgMainPropietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        mostrarTabla(datos.GuanaRent.mostrarPropietarios());
+
+    }
+
+    private void mostrarTabla(java.util.ArrayList<logica.Propietario> lista) {
+        String[] columnas = {"Cédula", "Nombre", "Género", "Dirección", "Teléfono", "Email"};
+        DefaultTableModel modelo
+                = new javax.swing.table.DefaultTableModel(null, columnas);
+        for (logica.Propietario p : lista) {
+            Object[] fila = {p.getCedPropiet(), p.getNomPropiet(), p.getGenero(),
+                p.getDireccion(), p.getTelefono(), p.getEmail()};
+            modelo.addRow(fila);
+        }
+        tblPropietario.setModel(modelo);
+        txtCantPropietarios.setText(String.valueOf(lista.size()));
     }
 
     /**
@@ -46,32 +64,47 @@ public class DlgMainPropietario extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblBuscar.setText("Buscar:");
+        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnInsertar.setText("Insertar");
+        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setHideActionText(true);
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
-        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
+        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -115,8 +148,8 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblPropietario);
 
-        lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         lblCantPropietarios.setText("Cant.Propietarios:");
+        lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
@@ -162,6 +195,37 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     private void txtCantPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantPropietariosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCantPropietariosActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
+        dlg.setVisible(true);
+        mostrarTabla(datos.GuanaRent.mostrarPropietarios());
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tblPropietario.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un propietario de la tabla.");
+            return;
+        }
+        String cedula = tblPropietario.getValueAt(fila, 0).toString();
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Eliminar al propietario con cédula " + cedula + "?",
+                "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (confirmar == JOptionPane.YES_OPTION) {
+            datos.GuanaRent.eliminarPropietario(cedula);
+            mostrarTabla(datos.GuanaRent.mostrarPropietarios());
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int fila = tblPropietario.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un propietario de la tabla.");
+            return;
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
 
     /**
      * @param args the command line arguments
