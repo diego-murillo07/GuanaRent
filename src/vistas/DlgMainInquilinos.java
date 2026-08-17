@@ -2,7 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JDialog.java to edit this template
  */
+
 package vistas;
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import logica.Inquilino;
 
 /**
  *
@@ -15,9 +20,37 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
      */
     public DlgMainInquilinos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+       initComponents();
+        setLocationRelativeTo(null); 
+        setTitle("Gestión de Inquilinos");
+           cargarTabla();
+
     }
 
+    
+     // CARGAR TABLA CON INQUILINOS
+    private void cargarTabla() {
+        String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+        
+        // Recorrer lista de INQUILINOS
+        for (Inquilino inq : datos.GuanaRent.listaInquilinos) {
+            Object[] fila = {
+                inq.getCedInqui(),
+                inq.getNomInqui(),
+                inq.getGenero(),
+                inq.getFechNac(),
+                inq.getDireccion(),
+                inq.getTelefono(),
+                inq.getEmail(),
+                inq.getOcupacion()
+            };
+            modelo.addRow(fila);
+        }
+        tblInquilinos.setModel(modelo);
+        txtCantInquilinos.setText(String.valueOf(datos.GuanaRent.listaInquilinos.size()));
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,40 +76,60 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblBuscar.setText("Buscar:");
 
-        txtBuscar.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        txtBuscar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
-        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnInsertar.setText("Insertar");
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
-        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(25, 25, 25)
                 .addComponent(lblBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 387, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -84,7 +137,7 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,7 +147,7 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
                         .addGap(31, 31, 31)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblBuscar)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -114,10 +167,10 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblInquilinos);
 
-        lblCantInquilinos.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        lblCantInquilinos.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCantInquilinos.setText("Cant.Inquilinos:");
 
-        txtCantInquilinos.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        txtCantInquilinos.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,8 +185,8 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addComponent(lblCantInquilinos)
-                .addGap(18, 18, 18)
-                .addComponent(txtCantInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txtCantInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,16 +196,103 @@ public class DlgMainInquilinos extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblCantInquilinos)
-                    .addComponent(txtCantInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                    .addComponent(txtCantInquilinos, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+      DlgNewInquilinos dlg = new DlgNewInquilinos((java.awt.Frame) this.getParent(), true);
+        dlg.setVisible(true);
+        cargarTabla();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+         int fila = tblInquilinos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "️ Seleccione un inquilino de la tabla");
+            return;
+        }
+        // Obtener cédula de la fila seleccionada
+        String cedula = tblInquilinos.getValueAt(fila, 0).toString();
+        
+        // Buscar el objeto Inquilino
+        Inquilino seleccionado = null;
+        for (Inquilino inq : datos.GuanaRent.listaInquilinos) {
+            if (inq.getCedInqui().equals(cedula)) {
+                seleccionado = inq;
+                break;
+            }
+        }
+        
+        // Abrir diálogo en MODO MODIFICAR
+        if (seleccionado != null) {
+            DlgNewInquilinos dlg = new DlgNewInquilinos((java.awt.Frame) this.getParent(), true, seleccionado);
+            dlg.setVisible(true);
+            cargarTabla(); 
+        }
+        
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+          int fila = tblInquilinos.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "️ Seleccione un inquilino de la tabla");
+            return;
+        }
+        String cedula = tblInquilinos.getValueAt(fila, 0).toString();
+        
+        int confirmar = JOptionPane.showConfirmDialog(this,
+                "¿Eliminar al inquilino con cédula: " + cedula + "?",
+                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+        
+        if (confirmar == JOptionPane.YES_OPTION) {
+            // Buscar y eliminar
+            Inquilino eliminar = null;
+            for (Inquilino inq : datos.GuanaRent.listaInquilinos) {
+                if (inq.getCedInqui().equals(cedula)) {
+                    eliminar = inq;
+                    break;
+                }
+            }
+            if (eliminar != null) {
+                datos.GuanaRent.listaInquilinos.remove(eliminar);
+                JOptionPane.showMessageDialog(this, " Inquilino eliminado");
+                cargarTabla(); // ✅ Refrescar tabla
+            }
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+         String buscar = txtBuscar.getText().trim().toLowerCase();
+        String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+        
+        // Filtrar por cédula o nombre
+        for (Inquilino inq : datos.GuanaRent.listaInquilinos) {
+            if (inq.getCedInqui().contains(buscar) || 
+                inq.getNomInqui().toLowerCase().contains(buscar)) {
+                modelo.addRow(new Object[]{
+                    inq.getCedInqui(), inq.getNomInqui(), inq.getGenero(),
+                    inq.getFechNac(), inq.getDireccion(), inq.getTelefono(),
+                    inq.getEmail(), inq.getOcupacion()
+                });
+            }
+        }
+        tblInquilinos.setModel(modelo);
+        txtCantInquilinos.setText(String.valueOf(modelo.getRowCount()));
+    
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    
+    
+    
     /**
      * @param args the command line arguments
      */
