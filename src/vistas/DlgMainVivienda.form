@@ -35,7 +35,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="lblCantPropietarios" min="-2" pref="162" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtCantPropietarios" min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="txtCantPropietarios" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -63,7 +63,7 @@
     <Component class="javax.swing.JTextField" name="txtCantPropietarios">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial Black" size="12" style="3"/>
         </Property>
       </Properties>
       <Events>
@@ -83,11 +83,11 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                   <Component id="lblBuscar" min="-2" pref="71" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                  <Component id="txtBuscar" min="-2" pref="345" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="txtBuscar" min="-2" pref="345" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnInsertar" min="-2" pref="131" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnEditar" min="-2" pref="129" max="-2" attributes="0"/>
@@ -107,9 +107,13 @@
                           <Component id="btnEditar" alignment="0" min="-2" pref="101" max="-2" attributes="0"/>
                           <Component id="btnInsertar" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                          <Component id="lblBuscar" alignment="0" min="-2" pref="25" max="-2" attributes="0"/>
-                          <Component id="txtBuscar" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBuscar" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -121,7 +125,7 @@
         <Component class="javax.swing.JLabel" name="lblBuscar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="14" style="3"/>
+              <Font name="Arial Black" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar:"/>
           </Properties>
@@ -129,7 +133,7 @@
         <Component class="javax.swing.JTextField" name="txtBuscar">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="14" style="3"/>
+              <Font name="Arial Black" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -200,7 +204,7 @@
     <Component class="javax.swing.JLabel" name="lblCantPropietarios">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial Black" size="12" style="3"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Cant.Viviendas:"/>
       </Properties>

@@ -138,10 +138,10 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="lblTipoConsulta">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Ver ganacias por:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="14" style="3"/>
+              <Font name="Arial Black" size="12" style="3"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Ver ganacias por:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rbAnioCompleto">
@@ -174,18 +174,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="14" style="3"/>
+              <Font name="Arial Black" size="12" style="3"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="A&#xf1;o:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Mes:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="14" style="3"/>
+              <Font name="Arial Black" size="12" style="3"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Mes:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTextField1">
@@ -215,10 +215,10 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnCalcularGanancia">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Calcular Ganancia"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial Black" size="14" style="3"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Calcular Ganancia"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCalcularGananciaActionPerformed"/>

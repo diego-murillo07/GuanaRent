@@ -43,19 +43,19 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblBuscar.setText("Buscar:");
 
-        txtBuscar.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        txtBuscar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnInsertar.setText("Insertar");
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -67,7 +67,7 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
             }
         });
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -102,11 +102,12 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                        .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEditar, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                    .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblBuscar))))
                 .addContainerGap(56, Short.MAX_VALUE))
         );
@@ -121,10 +122,10 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblAlquileres);
 
-        lblCantAlquileres.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        lblCantAlquileres.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCantAlquileres.setText("Cant.Alquileres:");
 
-        txtCantAlquileres.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        txtCantAlquileres.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,9 +137,9 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -149,14 +150,11 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(lblCantAlquileres))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(txtCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCantAlquileres, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCantAlquileres))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();

@@ -52,8 +52,8 @@ public class DlgGanancias extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ganancias de GuanaRent", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 14))); // NOI18N
 
+        lblTipoConsulta.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblTipoConsulta.setText("Ver ganacias por:");
-        lblTipoConsulta.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         buttonGroup1.add(rbAnioCompleto);
         rbAnioCompleto.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
@@ -73,16 +73,16 @@ public class DlgGanancias extends javax.swing.JDialog {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         jLabel2.setText("Año:");
-        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
+        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         jLabel3.setText("Mes:");
-        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
         cmbMesGenerar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        btnCalcularGanancia.setText("Calcular Ganancia");
         btnCalcularGanancia.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnCalcularGanancia.setText("Calcular Ganancia");
         btnCalcularGanancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCalcularGananciaActionPerformed(evt);

@@ -6,6 +6,8 @@ package vistas;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import logica.Inquilino;
+import logica.Propietario;
 
 /**
  *
@@ -19,21 +21,31 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     public DlgMainPropietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        mostrarTabla(datos.GuanaRent.mostrarPropietarios());
-
+          setLocationRelativeTo(null); 
+        setTitle("Gestión de Propietarios");
+           cargarTabla();
     }
 
-    private void mostrarTabla(java.util.ArrayList<logica.Propietario> lista) {
-        String[] columnas = {"Cédula", "Nombre", "Género", "Dirección", "Teléfono", "Email"};
-        DefaultTableModel modelo
-                = new javax.swing.table.DefaultTableModel(null, columnas);
-        for (logica.Propietario p : lista) {
-            Object[] fila = {p.getCedPropiet(), p.getNomPropiet(), p.getGenero(),
-                p.getDireccion(), p.getTelefono(), p.getEmail()};
+   // CARGAR TABLA CON PROPIETARIOS
+    private void cargarTabla() {
+        String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+        
+        // Recorrer lista de PROPIETARIOS
+        for (Propietario prop : datos.GuanaRent.listaPropietarios) {
+            Object[] fila = {
+                prop.getCedPropiet(),
+                prop.getNomPropiet(),
+                prop.getGenero(),
+                prop.getDireccion(),
+               prop.getTelefono(),
+                prop.getEmail()
+                
+            };
             modelo.addRow(fila);
         }
         tblPropietario.setModel(modelo);
-        txtCantPropietarios.setText(String.valueOf(lista.size()));
+        txtCantPropietarios.setText(String.valueOf(datos.GuanaRent.listaPropietarios.size()));
     }
 
     /**
@@ -64,14 +76,19 @@ public class DlgMainPropietario extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblBuscar.setText("Buscar:");
-        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        txtBuscar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        txtBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
+        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnInsertar.setText("Insertar");
-        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setHideActionText(true);
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
@@ -82,9 +99,9 @@ public class DlgMainPropietario extends javax.swing.JDialog {
             }
         });
 
+        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
-        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -94,9 +111,9 @@ public class DlgMainPropietario extends javax.swing.JDialog {
             }
         });
 
+        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -113,9 +130,9 @@ public class DlgMainPropietario extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
+                .addGap(31, 31, 31)
                 .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,15 +143,19 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInsertar))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnInsertar)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(7, 7, 7)))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
@@ -148,15 +169,10 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tblPropietario);
 
+        lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCantPropietarios.setText("Cant.Propietarios:");
-        lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
 
-        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPropietariosActionPerformed(evt);
-            }
-        });
+        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,7 +188,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -186,46 +202,93 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantPropietarios)
                     .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCantPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantPropietariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantPropietariosActionPerformed
-
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
         dlg.setVisible(true);
-        mostrarTabla(datos.GuanaRent.mostrarPropietarios());
+        cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        int fila = tblPropietario.getSelectedRow();
+         int fila = tblPropietario.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un propietario de la tabla.");
+            JOptionPane.showMessageDialog(this, "️ Seleccione un propietario de la tabla");
             return;
         }
         String cedula = tblPropietario.getValueAt(fila, 0).toString();
+        
         int confirmar = JOptionPane.showConfirmDialog(this,
-                "¿Eliminar al propietario con cédula " + cedula + "?",
-                "Confirmar", JOptionPane.YES_NO_OPTION);
+                "¿Eliminar al propietario con cédula: " + cedula + "?",
+                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+        
         if (confirmar == JOptionPane.YES_OPTION) {
-            datos.GuanaRent.eliminarPropietario(cedula);
-            mostrarTabla(datos.GuanaRent.mostrarPropietarios());
+            // Buscar y eliminar
+            Propietario eliminar = null;
+            for (Propietario prop : datos.GuanaRent.listaPropietarios) {
+                if (prop.getCedPropiet().equals(cedula)) {
+                    eliminar = prop;
+                    break;
+                }
+            }
+            if (eliminar != null) {
+                datos.GuanaRent.listaPropietarios.remove(eliminar);
+                JOptionPane.showMessageDialog(this, " Propietario eliminado");
+                cargarTabla(); // Refrescar tabla
+            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int fila = tblPropietario.getSelectedRow();
         if (fila == -1) {
-            JOptionPane.showMessageDialog(this, "Seleccione un propietario de la tabla.");
+            JOptionPane.showMessageDialog(this, "️ Seleccione un propietario de la tabla");
             return;
+        }
+        // Obtener cédula de la fila seleccionada
+        String cedula = tblPropietario.getValueAt(fila, 0).toString();
+        
+        // Buscar el objeto Propietario
+        Propietario seleccionado = null;
+        for (Propietario prop : datos.GuanaRent.listaPropietarios) {
+            if (prop.getCedPropiet().equals(cedula)) {
+                seleccionado = prop;
+                break;
+            }
+        }
+        
+        // Abrir diálogo en MODO MODIFICAR
+        if (seleccionado != null) {
+            DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true, seleccionado);
+            dlg.setVisible(true);
+            cargarTabla(); 
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+          String buscar = txtBuscar.getText().trim().toLowerCase();
+        String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+        
+        // Filtrar por cédula o nombre
+        for (Propietario prop : datos.GuanaRent.listaPropietarios) {
+            if (prop.getCedPropiet().contains(buscar) || 
+                prop.getNomPropiet().toLowerCase().contains(buscar)) {
+                modelo.addRow(new Object[]{
+                    prop.getCedPropiet(), prop.getNomPropiet(),prop.getGenero(),
+                     prop.getDireccion(), prop.getTelefono(),
+                    prop.getEmail()
+                });
+            }
+        }
+        tblPropietario.setModel(modelo);
+        txtCantPropietarios.setText(String.valueOf(modelo.getRowCount()));
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
