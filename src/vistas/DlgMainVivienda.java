@@ -6,14 +6,14 @@ package vistas;
 
 /**
  *
- * @author Deilyn Medrano
+ * @author Diego
  */
-public class DlgMainPropietario extends javax.swing.JDialog {
+public class DlgMainVivienda extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgMainPropietario
+     * Creates new form DlgMainVivienda
      */
-    public DlgMainPropietario(java.awt.Frame parent, boolean modal) {
+    public DlgMainVivienda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -27,7 +27,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jToggleButton1 = new javax.swing.JToggleButton();
+        txtCantPropietarios = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -37,12 +37,16 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblPropietario = new javax.swing.JTable();
         lblCantPropietarios = new javax.swing.JLabel();
-        txtCantPropietarios = new javax.swing.JTextField();
-
-        jToggleButton1.setText("jToggleButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Registro de Propietarios");
+        setTitle("Registro de Viviendas");
+
+        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantPropietariosActionPerformed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -88,7 +92,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,14 +120,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tblPropietario);
 
         lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        lblCantPropietarios.setText("Cant.Propietarios:");
-
-        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPropietariosActionPerformed(evt);
-            }
-        });
+        lblCantPropietarios.setText("Cant.Viviendas:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,7 +135,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
@@ -153,7 +150,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantPropietarios)
                     .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -180,20 +177,20 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DlgMainPropietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgMainVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DlgMainPropietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgMainVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DlgMainPropietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgMainVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DlgMainPropietario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgMainVivienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DlgMainPropietario dialog = new DlgMainPropietario(new javax.swing.JFrame(), true);
+                DlgMainVivienda dialog = new DlgMainVivienda(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -211,7 +208,6 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     private javax.swing.JButton btnInsertar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCantPropietarios;
     private javax.swing.JTable tblPropietario;

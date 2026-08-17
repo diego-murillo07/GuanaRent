@@ -15,6 +15,7 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
      */
     public JFrmSistemaPrincipal() {
         initComponents();
+        setLocationRelativeTo(null); // ← Centra la ventana al abrirse
     }
 
     /**
@@ -34,30 +35,72 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
         btnAlquileres = new javax.swing.JButton();
         btnMensualidades = new javax.swing.JButton();
         btnGanancias = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1138, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1255, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistena de Alquileres GuanaRenta");
+        setTitle("Sistema de Alquileres GuanaRenta");
         setResizable(false);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnPropietarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prop.png"))); // NOI18N
         btnPropietarios.setText("Propietarios");
+        btnPropietarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPropietariosActionPerformed(evt);
+            }
+        });
 
         btnViviendas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/vivienda.png"))); // NOI18N
         btnViviendas.setText("Viviendas");
+        btnViviendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViviendasActionPerformed(evt);
+            }
+        });
 
         btnInquilinos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/inquilino.png"))); // NOI18N
         btnInquilinos.setText("Inquilinos");
+        btnInquilinos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInquilinosActionPerformed(evt);
+            }
+        });
 
         btnAlquileres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/alquiler.png"))); // NOI18N
         btnAlquileres.setText("Alquileres");
+        btnAlquileres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlquileresActionPerformed(evt);
+            }
+        });
 
         btnMensualidades.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/mensualidad.png"))); // NOI18N
         btnMensualidades.setText("Mensualidades");
+        btnMensualidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMensualidadesActionPerformed(evt);
+            }
+        });
 
         btnGanancias.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/ganancias.png"))); // NOI18N
         btnGanancias.setText("Ganancias");
+        btnGanancias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGananciasActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -89,45 +132,67 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnMensualidades)
                 .addGap(18, 18, 18)
                 .addComponent(btnGanancias)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(435, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Principal (2).png"))); // NOI18N
+        jLabel1.setText("jLabel1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(254, 254, 254)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 797, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropietariosActionPerformed
+        DlgMainPropietario dlg = new DlgMainPropietario(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnPropietariosActionPerformed
+
+    private void btnViviendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViviendasActionPerformed
+        DlgMainVivienda dlg = new DlgMainVivienda(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnViviendasActionPerformed
+
+    private void btnInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInquilinosActionPerformed
+        DlgMainInquilinos dlg = new DlgMainInquilinos(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnInquilinosActionPerformed
+
+    private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
+        DlgMainAlquileres dlg = new DlgMainAlquileres(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnAlquileresActionPerformed
+
+    private void btnMensualidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensualidadesActionPerformed
+        DlgMensualidades dlg = new DlgMensualidades(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnMensualidadesActionPerformed
+
+    private void btnGananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGananciasActionPerformed
+        DlgGanancias dlg = new DlgGanancias(this, true);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_btnGananciasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +236,7 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnMensualidades;
     private javax.swing.JButton btnPropietarios;
     private javax.swing.JButton btnViviendas;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
