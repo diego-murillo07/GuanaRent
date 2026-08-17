@@ -14,7 +14,6 @@ import logica.Propietario;
  * @author Deilyn Medrano
  */
 public class DlgNewPropietario extends javax.swing.JDialog {
-    
     private Propietario propietario;
     private int operacion;
 
@@ -24,7 +23,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
     public DlgNewPropietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        setLocation(null);
+        setLocationRelativeTo(null);
         setTitle("Registrar Propietario" );
         operacion = 0;
     }
@@ -32,7 +31,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
      public DlgNewPropietario(java.awt.Frame parent, boolean modal, logica.Propietario propietario) {
         super(parent, modal);
         initComponents();
-        setLocation(null);
+        setLocationRelativeTo(null);
         setTitle("Modificar Propietario" );
         this.propietario = propietario;
         operacion = 1 ;
