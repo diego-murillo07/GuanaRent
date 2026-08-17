@@ -6,7 +6,6 @@ package vistas;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import logica.Inquilino;
 import logica.Propietario;
 
 /**
@@ -209,9 +208,9 @@ public class DlgMainPropietario extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
-        dlg.setVisible(true);
-        cargarTabla();
+    DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
+    dlg.setVisible(true);
+    cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
