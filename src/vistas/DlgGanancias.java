@@ -16,6 +16,10 @@ public class DlgGanancias extends javax.swing.JDialog {
     public DlgGanancias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        rbAnioCompleto.setSelected(true);   // por defecto empieza en "Año completo"
+        cmbMesGenerar1.setEnabled(false);   // el combo de mes arranca apagado
+        lblResultadoGanancia.setText("");   // que no diga "jLabel4" al abrir
+
     }
 
     /**
@@ -40,7 +44,7 @@ public class DlgGanancias extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
         cmbMesGenerar1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnCalcularGanancia = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblResultadoGanancia = new javax.swing.JLabel();
 
@@ -48,31 +52,46 @@ public class DlgGanancias extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ganancias de GuanaRent", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 14))); // NOI18N
 
-        lblTipoConsulta.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        lblTipoConsulta.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblTipoConsulta.setText("Ver ganacias por:");
 
         buttonGroup1.add(rbAnioCompleto);
         rbAnioCompleto.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         rbAnioCompleto.setText("Año completo");
+        rbAnioCompleto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbAnioCompletoActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(rbMesEspecifico);
         rbMesEspecifico.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         rbMesEspecifico.setText("Mes especifico");
+        rbMesEspecifico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMesEspecificoActionPerformed(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         jLabel2.setText("Año:");
 
-        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         jLabel3.setText("Mes:");
 
         cmbMesGenerar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        jButton1.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
-        jButton1.setText("Calcular Ganancia");
+        btnCalcularGanancia.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnCalcularGanancia.setText("Calcular Ganancia");
+        btnCalcularGanancia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularGananciaActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ganancia total del periodo", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 14))); // NOI18N
 
-        lblResultadoGanancia.setText("jLabel4");
+        lblResultadoGanancia.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -118,7 +137,7 @@ public class DlgGanancias extends javax.swing.JDialog {
                         .addComponent(lblTipoConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(125, 125, 125)
-                        .addComponent(jButton1)))
+                        .addComponent(btnCalcularGanancia)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 34, Short.MAX_VALUE)
@@ -142,7 +161,7 @@ public class DlgGanancias extends javax.swing.JDialog {
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cmbMesGenerar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(63, 63, 63)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCalcularGanancia, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -167,6 +186,45 @@ public class DlgGanancias extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void rbAnioCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnioCompletoActionPerformed
+        cmbMesGenerar1.setEnabled(false);
+    }//GEN-LAST:event_rbAnioCompletoActionPerformed
+
+    private void rbMesEspecificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesEspecificoActionPerformed
+        cmbMesGenerar1.setEnabled(true);
+    }//GEN-LAST:event_rbMesEspecificoActionPerformed
+
+    private void btnCalcularGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularGananciaActionPerformed
+        // Validar que el año no esté vacío
+        if (jTextField1.getText().trim().isEmpty()) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "Debe ingresar un año.", "Aviso",
+                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int anio;
+        try {
+            anio = Integer.parseInt(jTextField1.getText().trim());
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this,
+                    "El año debe ser un número válido.", "Error",
+                    javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        double resultado;
+
+        if (rbAnioCompleto.isSelected()) {
+            resultado = datos.GuanaRent.calcularGananciasAnio(anio);
+        } else {
+            int mes = cmbMesGenerar1.getSelectedIndex() + 1; // Enero = 1
+            resultado = datos.GuanaRent.calcularGananciasMes(mes, anio);
+        }
+
+        lblResultadoGanancia.setText(String.format("₡ %,.2f", resultado));
+    }//GEN-LAST:event_btnCalcularGananciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,13 +269,13 @@ public class DlgGanancias extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCalcularGanancia;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
     private javax.swing.ButtonGroup buttonGroup4;
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.JComboBox<String> cmbMesGenerar1;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
