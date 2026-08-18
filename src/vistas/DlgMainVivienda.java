@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Diego
@@ -16,6 +19,34 @@ public class DlgMainVivienda extends javax.swing.JDialog {
     public DlgMainVivienda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Gestión de Vivienda");
+        cargarTabla();
+    }
+
+    // ==== CARGAR TABLA ====
+    private void cargarTabla() {
+        String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
+            "M² Lote", "Tipo", "Habitaciones", "Precio Base", "Estado"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            Object[] fila = {
+                viv.getIdVivienda(),
+                viv.getDescripcion(),
+                viv.getDireccion(),
+                viv.getMtsConstruct(),
+                viv.getMtsLote(),
+                viv.getTipoConstruccion(),
+                viv.getCantHabitac(),
+                viv.getPrecioBase(),
+                viv.getEstado()
+            };
+            modelo.addRow(fila);
+        }
+
+        tblViviendas.setModel(modelo);
+        txtCantViviendas.setText(String.valueOf(datos.GuanaRent.listaViviendas.size()));
     }
 
     /**
@@ -27,7 +58,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCantPropietarios = new javax.swing.JTextField();
+        txtCantViviendas = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -35,18 +66,13 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPropietario = new javax.swing.JTable();
+        tblViviendas = new javax.swing.JTable();
         lblCantPropietarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Viviendas");
 
-        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
-        txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPropietariosActionPerformed(evt);
-            }
-        });
+        txtCantViviendas.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -54,6 +80,11 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         lblBuscar.setText("Buscar:");
 
         txtBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
@@ -62,6 +93,11 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
         btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
@@ -69,6 +105,11 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
@@ -76,6 +117,11 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -112,7 +158,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        tblPropietario.setModel(new javax.swing.table.DefaultTableModel(
+        tblViviendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -120,7 +166,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane1.setViewportView(tblPropietario);
+        jScrollPane1.setViewportView(tblViviendas);
 
         lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCantPropietarios.setText("Cant.Viviendas:");
@@ -139,7 +185,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtCantViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
@@ -152,16 +198,103 @@ public class DlgMainVivienda extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantPropietarios)
-                    .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCantPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantPropietariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantPropietariosActionPerformed
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        DlgNewVivienda dlg = new DlgNewVivienda((java.awt.Frame) this.getParent(), true);
+        dlg.setVisible(true);
+        cargarTabla();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int fila = tblViviendas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una vivienda de la tabla");
+            return;
+        }
+        String id = tblViviendas.getValueAt(fila, 0).toString();
+
+        logica.Vivienda seleccionada = null;
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            if (viv.getIdVivienda().equals(id)) {
+                seleccionada = viv;
+                break;
+            }
+        }
+
+        if (seleccionada != null) {
+            DlgNewVivienda dlg = new DlgNewVivienda(
+                    (java.awt.Frame) this.getParent(), true, seleccionada);
+            dlg.setVisible(true);
+            cargarTabla();
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tblViviendas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una vivienda de la tabla");
+            return;
+        }
+        String id = tblViviendas.getValueAt(fila, 0).toString();
+
+        int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Eliminar la vivienda con ID: " + id + "?",
+                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            logica.Vivienda eliminar = null;
+            for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+                if (viv.getIdVivienda().equals(id)) {
+                    eliminar = viv;
+                    break;
+                }
+            }
+            if (eliminar != null) {
+                datos.GuanaRent.listaViviendas.remove(eliminar);
+                JOptionPane.showMessageDialog(this, "Vivienda Eliminada");
+                cargarTabla();
+            }
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        String buscar = txtBuscar.getText().trim().toLowerCase();
+        String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
+            "M² Lote", "Tipo", "Habitaciones", "Precio Base", "Estado"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        // Filtrar por ID, Descripción o Dirección
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            if (viv.getIdVivienda().toLowerCase().contains(buscar)
+                    || viv.getDescripcion().toLowerCase().contains(buscar)
+                    || viv.getDireccion().toLowerCase().contains(buscar)) {
+
+                modelo.addRow(new Object[]{
+                    viv.getIdVivienda(),
+                    viv.getDescripcion(),
+                    viv.getDireccion(),
+                    viv.getMtsConstruct(),
+                    viv.getMtsLote(),
+                    viv.getTipoConstruccion(),
+                    viv.getCantHabitac(),
+                    viv.getPrecioBase(),
+                    viv.getEstado()
+                });
+            }
+        }
+
+        tblViviendas.setModel(modelo);
+        txtCantViviendas.setText(String.valueOf(modelo.getRowCount()));
+
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,8 +346,8 @@ public class DlgMainVivienda extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCantPropietarios;
-    private javax.swing.JTable tblPropietario;
+    private javax.swing.JTable tblViviendas;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCantPropietarios;
+    private javax.swing.JTextField txtCantViviendas;
     // End of variables declaration//GEN-END:variables
 }
