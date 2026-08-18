@@ -27,47 +27,40 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
-                              <Component id="btnGuardar" min="-2" pref="169" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
-                              <Component id="btnLimpiar" min="-2" pref="169" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
-                              <Component id="btnCancelar" min="-2" pref="167" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <EmptySpace min="-2" pref="204" max="-2" attributes="0"/>
+                      <Component id="btnGuardar" min="-2" pref="140" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
+                      <Component id="btnLimpiar" min="-2" pref="139" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="124" max="-2" attributes="0"/>
+                      <Component id="btnCancelar" min="-2" pref="141" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                      <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jPanel2" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" pref="285" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                      <Component id="btnLimpiar" min="-2" pref="121" max="-2" attributes="0"/>
-                      <Component id="btnGuardar" min="-2" pref="122" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                      <Component id="btnCancelar" min="-2" pref="122" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="btnGuardar" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnLimpiar" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="112" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -81,7 +74,7 @@
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
-              <Font PropertyName="font" name="Arial Black" size="12" style="3"/>
+              <Font PropertyName="font" name="Arial" size="12" style="3"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -94,59 +87,60 @@
                   <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblCochera" min="-2" pref="150" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="chkCochera" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblHabitaciones" min="-2" pref="122" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="txtCantHabitac" min="-2" pref="258" max="-2" attributes="0"/>
+                          <Component id="lblMtsConstruccion" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Component id="txtMtsConstruct" min="-2" pref="257" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblId" min="-2" pref="43" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtIdVivienda" min="-2" pref="227" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblDireccion" min="-2" pref="100" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                                          <Component id="txtDireccion" min="-2" pref="279" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Component id="lblMtsConstruccion" min="-2" pref="165" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="txtMtsConstruct" min="-2" pref="227" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="lblDescripcion" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
-                                      <Component id="lblMtsLote" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
-                                      <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                          <Component id="lblBanos" min="-2" pref="68" max="-2" attributes="0"/>
-                                          <Component id="lblCarretera" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="lblTipoConstruccion" pref="149" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="cmbTipoConstruccion" min="-2" pref="227" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="lblDireccion" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                              <Component id="lblId" alignment="0" min="-2" pref="43" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cmbCarretera" min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="txtMtsLote" min="-2" pref="258" max="-2" attributes="0"/>
-                              <Component id="txtDescripcion" min="-2" pref="422" max="-2" attributes="0"/>
-                              <Component id="txtBanios" min="-2" pref="258" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtDireccion" alignment="1" pref="279" max="32767" attributes="0"/>
+                              <Component id="txtIdVivienda" max="32767" attributes="0"/>
                           </Group>
+                          <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="lblTipoConstruccion" pref="123" max="32767" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="cmbTipoConstruccion" min="-2" pref="258" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblCochera" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="chkCochera" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblHabitaciones" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtCantHabitac" min="-2" pref="258" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <EmptySpace min="-2" pref="145" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblDescripcion" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                      <Component id="lblMtsLote" alignment="0" min="-2" pref="94" max="-2" attributes="0"/>
+                      <Component id="lblBanos" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
+                      <Component id="lblCarretera" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtDescripcion" pref="422" max="32767" attributes="0"/>
+                      <Component id="txtMtsLote" alignment="0" max="32767" attributes="0"/>
+                      <Component id="cmbCarretera" max="32767" attributes="0"/>
+                      <Component id="txtBanios" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="26" max="32767" attributes="0"/>
               </Group>
@@ -154,20 +148,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="lblHabitaciones" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCantHabitac" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="lblCochera" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="chkCochera" alignment="1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblDescripcion" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -177,38 +158,51 @@
                           <Component id="txtDescripcion" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="lblMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblMtsConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtMtsConstruct" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Component id="lblCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cmbCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="lblTipoConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="cmbTipoConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="lblTipoConstruccion" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtBanios" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblBanos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="cmbTipoConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                                  <Component id="txtBanios" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblBanos" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="lblHabitaciones" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtCantHabitac" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblCochera" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="chkCochera" alignment="1" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -217,7 +211,7 @@
         <Component class="javax.swing.JLabel" name="lblId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Id:"/>
           </Properties>
@@ -232,9 +226,9 @@
         <Component class="javax.swing.JLabel" name="lblMtsConstruccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Mts. Construccion:"/>
+            <Property name="text" type="java.lang.String" value="Mts. Construcci&#xf3;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMtsConstruct">
@@ -247,9 +241,9 @@
         <Component class="javax.swing.JLabel" name="lblTipoConstruccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Tipo construccion:"/>
+            <Property name="text" type="java.lang.String" value="Tipo construcci&#xf3;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbTipoConstruccion">
@@ -274,7 +268,7 @@
         <Component class="javax.swing.JLabel" name="lblDireccion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Direccci&#xf3;n:"/>
           </Properties>
@@ -289,7 +283,7 @@
         <Component class="javax.swing.JLabel" name="lblMtsLote">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Mts. Lote:"/>
           </Properties>
@@ -297,7 +291,7 @@
         <Component class="javax.swing.JLabel" name="lblCarretera">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Carretera: "/>
           </Properties>
@@ -305,7 +299,7 @@
         <Component class="javax.swing.JLabel" name="lblHabitaciones">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Habitaciones:"/>
           </Properties>
@@ -320,7 +314,7 @@
         <Component class="javax.swing.JLabel" name="lblCochera">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Posee cochera?:"/>
           </Properties>
@@ -330,9 +324,9 @@
         <Component class="javax.swing.JLabel" name="lblDescripcion">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Descripcion:"/>
+            <Property name="text" type="java.lang.String" value="Descripci&#xf3;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="txtDescripcion">
@@ -370,7 +364,7 @@
         <Component class="javax.swing.JLabel" name="lblBanos">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ba&#xf1;os:"/>
           </Properties>
@@ -387,7 +381,7 @@
     <Component class="javax.swing.JButton" name="btnLimpiar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/limpiar.png"/>
@@ -404,7 +398,7 @@
     <Component class="javax.swing.JButton" name="btnGuardar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/guardar.png"/>
@@ -421,7 +415,7 @@
     <Component class="javax.swing.JButton" name="btnCancelar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/img/cancelar.png"/>
@@ -443,7 +437,7 @@
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
-              <Font PropertyName="font" name="Arial Black" size="12" style="3"/>
+              <Font PropertyName="font" name="Arial" size="12" style="3"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -465,7 +459,7 @@
                       </Group>
                       <Component id="lblTipoConstruccion1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblMtsLote1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCarretera1" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
@@ -475,7 +469,7 @@
                       <Component id="cmbEstado" min="-2" pref="227" max="-2" attributes="0"/>
                       <Component id="txtDeposiGarant" min="-2" pref="258" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="84" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -505,7 +499,7 @@
         <Component class="javax.swing.JLabel" name="lblPrecioBase">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Precio Base:"/>
           </Properties>
@@ -520,7 +514,7 @@
         <Component class="javax.swing.JLabel" name="lblTipoConstruccion1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Propietario:"/>
           </Properties>
@@ -547,7 +541,7 @@
         <Component class="javax.swing.JLabel" name="lblMtsLote1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Deposito de garantia:"/>
           </Properties>
@@ -555,7 +549,7 @@
         <Component class="javax.swing.JLabel" name="lblCarretera1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Estado:"/>
           </Properties>

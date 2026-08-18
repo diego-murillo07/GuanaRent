@@ -32,17 +32,17 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
-              <Component id="btnGuardar" min="-2" pref="183" max="-2" attributes="0"/>
-              <EmptySpace pref="172" max="32767" attributes="0"/>
-              <Component id="btnLimpiar" min="-2" pref="179" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
-              <Component id="btnCancelar" min="-2" pref="179" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnGuardar" min="-2" pref="150" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+              <Component id="btnLimpiar" min="-2" pref="153" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+              <Component id="btnCancelar" min="-2" pref="135" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="314" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="33" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -51,20 +51,13 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Component id="btnLimpiar" min="-2" pref="119" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnCancelar" alignment="1" min="-2" pref="118" max="-2" attributes="0"/>
-                          <Component id="btnGuardar" alignment="1" min="-2" pref="119" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="btnLimpiar" max="32767" attributes="0"/>
+                  <Component id="btnGuardar" max="32767" attributes="0"/>
+                  <Component id="btnCancelar" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -78,7 +71,7 @@
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">
                 <BevelBorder/>
               </Border>
-              <Font PropertyName="font" name="Arial Black" size="14" style="3"/>
+              <Font PropertyName="font" name="Arial" size="12" style="3"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -96,13 +89,18 @@
                               <Component id="lblNombre" pref="72" max="32767" attributes="0"/>
                               <Component id="lblGenero" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtCedula" max="32767" attributes="0"/>
-                                  <Component id="txtNombre" pref="295" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="txtCedula" max="32767" attributes="0"/>
+                                      <Component id="txtNombre" pref="295" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <Component id="cmbGenero" alignment="0" min="-2" pref="166" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                                  <Component id="cmbGenero" min="-2" pref="166" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -119,13 +117,11 @@
                       <Component id="lblOcupacion" alignment="0" min="-2" pref="104" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtOcupacion" min="-2" pref="250" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtEmail" pref="255" max="32767" attributes="0"/>
-                          <Component id="ftxtTelefono" min="-2" pref="126" max="-2" attributes="0"/>
-                          <Component id="txtDireccion" max="32767" attributes="0"/>
-                      </Group>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtEmail" pref="255" max="32767" attributes="0"/>
+                      <Component id="txtDireccion" max="32767" attributes="0"/>
+                      <Component id="ftxtTelefono" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtOcupacion" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="77" max="32767" attributes="0"/>
               </Group>
@@ -181,7 +177,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="C&#xe9;dula:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -189,7 +185,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Nombre:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -197,7 +193,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="G&#xe9;nero:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -205,7 +201,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Direcci&#xf3;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -213,7 +209,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Tel&#xe9;fono:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -221,7 +217,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="E-mail:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -229,7 +225,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Fecha Nacimiento:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -237,7 +233,7 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Ocupaci&#xf3;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial Black" size="12" style="3"/>
+              <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
         </Component>
@@ -265,9 +261,10 @@
         <Component class="javax.swing.JComboBox" name="cmbGenero">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
-                <StringItem index="0" value="Femenino"/>
-                <StringItem index="1" value="Masculino"/>
+              <StringArray count="3">
+                <StringItem index="0" value="Seleccione un g&#xe9;nero"/>
+                <StringItem index="1" value="Femenino"/>
+                <StringItem index="2" value="Masculino"/>
               </StringArray>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -305,6 +302,9 @@
               <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtOcupacionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -315,7 +315,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Cancelar"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalAlignment" type="int" value="3"/>
@@ -332,7 +332,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Limpiar"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalAlignment" type="int" value="3"/>
@@ -349,7 +349,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Guardar"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Arial Black" size="14" style="3"/>
+          <Font name="Arial" size="14" style="2"/>
         </Property>
         <Property name="horizontalTextPosition" type="int" value="0"/>
         <Property name="verticalAlignment" type="int" value="3"/>

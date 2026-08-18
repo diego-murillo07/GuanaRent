@@ -81,31 +81,31 @@ public class DlgNewPropietario extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Datos de Propietario");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos del Propietario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 12))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos del Propietario", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 12))); // NOI18N
 
         lblCedula.setText("Cédula:");
-        lblCedula.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblCedula.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblNombre.setText("Nombre:");
-        lblNombre.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtNombre.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblGenero.setText("Género:");
-        lblGenero.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblGenero.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
-        cmbGenero.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un género", "Femenino", "Masculino" }));
+        cmbGenero.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblDireccion.setText("Direccción:");
-        lblDireccion.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblTelefono.setText("Télefono:");
-        lblTelefono.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         try {
             ftxtTelefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
@@ -114,7 +114,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
         }
 
         lblEmail.setText("E-mail:");
-        lblEmail.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtEmail.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
@@ -140,18 +140,18 @@ public class DlgNewPropietario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblDireccion)
-                        .addGap(28, 28, 28)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEmail))
+                        .addGap(332, 332, 332))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(lblDireccion)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ftxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(56, 56, 56))
+                            .addComponent(ftxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,7 +179,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
-        btnLimpiar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnLimpiar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -191,7 +191,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -203,7 +203,7 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -218,13 +218,13 @@ public class DlgNewPropietario extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57))
+                .addGap(121, 121, 121)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(64, 64, 64)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(66, 66, 66)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -233,17 +233,14 @@ public class DlgNewPropietario extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
+                .addGap(17, 17, 17)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(8, 8, 8)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         pack();
