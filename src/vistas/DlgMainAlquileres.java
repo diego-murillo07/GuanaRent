@@ -4,6 +4,10 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import logica.Alquiler;
+
 /**
  *
  * @author Deilyn Medrano
@@ -16,8 +20,137 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
     public DlgMainAlquileres(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        cargarTabla();
     }
 
+        private void cargarTabla() {
+
+        String[] columnas = {
+            "N° Alquiler",
+            "Fecha Contrato",
+            "Meses",
+            "Adultos",
+            "Niños",
+            "Depósito",
+            "Precio",
+            "Incremento %",
+            "Inquilino",
+            "Vivienda",
+            "Estado"
+        };
+
+        DefaultTableModel modelo =
+                new DefaultTableModel(null, columnas);
+
+        for (Alquiler a : datos.GuanaRent.listaAlquileres) {
+
+            String cedula = "";
+
+            if (a.getInquilino() != null) {
+                cedula = a.getInquilino().getCedInqui();
+            }
+
+            String vivienda = "";
+
+            if (a.getVivienda() != null) {
+                vivienda = a.getVivienda().getIdVivienda();
+            }
+
+            Object[] fila = {
+                a.getNumAlquiler(),
+                a.getFechContrato(),
+                a.getCantMeses(),
+                a.getNumAdultos(),
+                a.getNumNinos(),
+                a.getDepositoGarantia(),
+                a.getPrecioAlquiler(),
+                a.getPorcIncremAnual(),
+                cedula,
+                vivienda,
+                a.getEstado()
+            };
+
+            modelo.addRow(fila);
+        }
+
+        tblAlquileres.setModel(modelo);
+
+        txtCantAlquileres.setText(
+                String.valueOf(
+                        datos.GuanaRent.listaAlquileres.size()));
+    }
+        
+    private void buscarAlquileres() {
+
+        String buscar =
+                txtBuscar.getText()
+                        .trim()
+                        .toLowerCase();
+
+        String[] columnas = {
+            "N° Alquiler",
+            "Fecha Contrato",
+            "Meses",
+            "Adultos",
+            "Niños",
+            "Depósito",
+            "Precio",
+            "Incremento %",
+            "Inquilino",
+            "Vivienda",
+            "Estado"
+        };
+
+        DefaultTableModel modelo =
+                new DefaultTableModel(null, columnas);
+
+        for (Alquiler a : datos.GuanaRent.listaAlquileres) {
+
+            String cedula = "";
+            String vivienda = "";
+
+            if (a.getInquilino() != null) {
+                cedula = a.getInquilino().getCedInqui();
+            }
+
+            if (a.getVivienda() != null) {
+                vivienda = a.getVivienda().getIdVivienda();
+            }
+
+            String texto =
+                    String.valueOf(a.getNumAlquiler())
+                    + " "
+                    + cedula
+                    + " "
+                    + vivienda
+                    + " "
+                    + a.getEstado();
+
+            if (texto.toLowerCase().contains(buscar)) {
+
+                modelo.addRow(new Object[]{
+                    a.getNumAlquiler(),
+                    a.getFechContrato(),
+                    a.getCantMeses(),
+                    a.getNumAdultos(),
+                    a.getNumNinos(),
+                    a.getDepositoGarantia(),
+                    a.getPrecioAlquiler(),
+                    a.getPorcIncremAnual(),
+                    cedula,
+                    vivienda,
+                    a.getEstado()
+                });
+            }
+        }
+
+        tblAlquileres.setModel(modelo);
+
+        txtCantAlquileres.setText(
+                String.valueOf(modelo.getRowCount()));
+    }
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -47,6 +180,11 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
         lblBuscar.setText("Buscar:");
 
         txtBuscar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
         btnInsertar.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
@@ -131,6 +269,11 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
         lblCantAlquileres.setText("Cant.Alquileres:");
 
         txtCantAlquileres.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtCantAlquileres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCantAlquileresActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -167,15 +310,100 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         // TODO add your handling code here:
+        int fila = tblAlquileres.getSelectedRow();
+
+        if (fila == -1) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un alquiler de la tabla.");
+
+            return;
+        }
+
+        int numero = Integer.parseInt(
+                tblAlquileres
+                        .getValueAt(fila, 0)
+                        .toString());
+
+        Alquiler seleccionado =
+                datos.GuanaRent.buscarAlquiler(numero);
+
+        if (seleccionado != null) {
+
+            DlgNewAlquileres dlg =
+                    new DlgNewAlquileres(
+                            (java.awt.Frame) this.getParent(),
+                            true,
+                            seleccionado);
+
+            dlg.setVisible(true);
+
+            cargarTabla();
+        }
     }//GEN-LAST:event_btnEditarActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+         int fila = tblAlquileres.getSelectedRow();
+
+        if (fila == -1) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Seleccione un alquiler de la tabla.");
+
+            return;
+        }
+
+        int numero = Integer.parseInt(
+                tblAlquileres
+                        .getValueAt(fila, 0)
+                        .toString());
+
+        int confirmar = JOptionPane.showConfirmDialog(
+                this,
+                "¿Desea eliminar el alquiler N° "
+                + numero + "?",
+                "Confirmar eliminación",
+                JOptionPane.YES_NO_OPTION);
+
+        if (confirmar == JOptionPane.YES_OPTION) {
+
+            if (datos.GuanaRent.eliminarAlquiler(numero)) {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Alquiler eliminado correctamente.");
+
+                cargarTabla();
+
+            } else {
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "No se pudo eliminar el alquiler.");
+            }
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-        // TODO add your handling code here:
+       DlgNewAlquileres dlg =
+                new DlgNewAlquileres(
+                        (java.awt.Frame) this.getParent(),
+                        true);
+
+        dlg.setVisible(true);
+
+        cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+         buscarAlquileres();
+    }//GEN-LAST:event_txtBuscarActionPerformed
+
+    private void txtCantAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantAlquileresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCantAlquileresActionPerformed
 
     /**
      * @param args the command line arguments
