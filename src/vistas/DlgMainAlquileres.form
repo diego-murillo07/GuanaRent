@@ -121,6 +121,9 @@
               <Font name="Arial" size="12" style="3"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBuscarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnInsertar">
           <Properties>
@@ -211,6 +214,9 @@
           <Font name="Arial" size="12" style="3"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCantAlquileresActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

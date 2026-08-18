@@ -4,6 +4,9 @@
  */
 package vistas;
 
+import java.awt.Frame;
+import logica.Alquiler;
+
 /**
  *
  * @author Deilyn Medrano
@@ -17,6 +20,10 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
     public DlgNewAlquileres(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+    }
+
+    DlgNewAlquileres(Frame frame, boolean b, Alquiler seleccionado) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
