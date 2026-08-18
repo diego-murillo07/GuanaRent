@@ -4,11 +4,17 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import logica.Vivienda;
+
 /**
  *
  * @author Diego
  */
 public class DlgNewVivienda extends javax.swing.JDialog {
+
+    private Vivienda vivienda;
+    private int operacion;
 
     /**
      * Creates new form DlgNewVivienda
@@ -16,6 +22,39 @@ public class DlgNewVivienda extends javax.swing.JDialog {
     public DlgNewVivienda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Registrar Vivienda");
+        operacion = 0;
+    }
+
+    public DlgNewVivienda(java.awt.Frame parent, boolean modal, Vivienda vivienda) {
+        super(parent, modal);
+        initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Modificar Vivienda");
+        this.vivienda = vivienda;
+        operacion = 2;
+        cargarDatosEnCampos();
+    }
+
+    // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
+    private void cargarDatosEnCampos() {
+        if (vivienda != null) {
+            txtIdVivienda.setText(vivienda.getIdVivienda());
+            txtDescripcion.setText(vivienda.getDescripcion());
+            txtDireccion.setText(vivienda.getDireccion());
+            txtMtsConstruct.setText(String.valueOf(vivienda.getMtsConstruct()));
+            txtMtsLote.setText(String.valueOf(vivienda.getMtsLote()));
+            cmbTipoConstruccion.setSelectedItem(vivienda.getTipoConstruccion());
+            chkCochera.setSelected(vivienda.isCochera());
+            txtCantHabitac.setText(String.valueOf(vivienda.getCantHabitac()));
+            txtBanios.setText(String.valueOf(vivienda.getCantBanios()));
+            cmbCarretera.setSelectedItem(vivienda.getCarretera());
+            txtPrecioBase.setText(String.valueOf(vivienda.getPrecioBase()));
+            txtDeposiGarant.setText(String.valueOf(vivienda.getDepositoGarantia()));
+            cmbEstado.setSelectedItem(vivienda.getEstado());
+            txtIdVivienda.setEditable(false); // No se puede editar el ID
+        }
     }
 
     /**
@@ -29,9 +68,9 @@ public class DlgNewVivienda extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         lblId = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
+        txtIdVivienda = new javax.swing.JTextField();
         lblMtsConstruccion = new javax.swing.JLabel();
-        txtMtsConstruccion = new javax.swing.JTextField();
+        txtMtsConstruct = new javax.swing.JTextField();
         lblTipoConstruccion = new javax.swing.JLabel();
         cmbTipoConstruccion = new javax.swing.JComboBox<>();
         lblDireccion = new javax.swing.JLabel();
@@ -39,15 +78,15 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         lblMtsLote = new javax.swing.JLabel();
         lblCarretera = new javax.swing.JLabel();
         lblHabitaciones = new javax.swing.JLabel();
-        txtHabitaciones = new javax.swing.JTextField();
+        txtCantHabitac = new javax.swing.JTextField();
         lblCochera = new javax.swing.JLabel();
         chkCochera = new javax.swing.JCheckBox();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         txtMtsLote = new javax.swing.JTextField();
-        cmbTipoConstruccion1 = new javax.swing.JComboBox<>();
+        cmbCarretera = new javax.swing.JComboBox<>();
         lblBanos = new javax.swing.JLabel();
-        txtBanos = new javax.swing.JTextField();
+        txtBanios = new javax.swing.JTextField();
         btnLimpiar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
@@ -58,8 +97,8 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         cmbTipoConstruccion2 = new javax.swing.JComboBox<>();
         lblMtsLote1 = new javax.swing.JLabel();
         lblCarretera1 = new javax.swing.JLabel();
-        txtMtsLote1 = new javax.swing.JTextField();
-        cmbTipoConstruccion3 = new javax.swing.JComboBox<>();
+        txtDeposiGarant = new javax.swing.JTextField();
+        cmbEstado = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Datos de Vivienda");
@@ -69,12 +108,12 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         lblId.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblId.setText("Id:");
 
-        txtId.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtIdVivienda.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblMtsConstruccion.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblMtsConstruccion.setText("Mts. Construccion:");
 
-        txtMtsConstruccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtMtsConstruct.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblTipoConstruccion.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblTipoConstruccion.setText("Tipo construccion:");
@@ -96,7 +135,7 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         lblHabitaciones.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblHabitaciones.setText("Habitaciones:");
 
-        txtHabitaciones.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtCantHabitac.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblCochera.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCochera.setText("Posee cochera?:");
@@ -108,13 +147,13 @@ public class DlgNewVivienda extends javax.swing.JDialog {
 
         txtMtsLote.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        cmbTipoConstruccion1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        cmbTipoConstruccion1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lastre", "Pavimentada", "Adoquinada", " " }));
+        cmbCarretera.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        cmbCarretera.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lastre", "Pavimentada", "Adoquinada", " " }));
 
         lblBanos.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblBanos.setText("Baños:");
 
-        txtBanos.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtBanios.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -130,7 +169,7 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCantHabitac, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -138,7 +177,7 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtIdVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27)
@@ -146,34 +185,33 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(lblMtsConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMtsConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtMtsConstruct, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(99, 99, 99)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(lblMtsLote, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblCarretera)
-                                    .addComponent(lblBanos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblBanos, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblCarretera))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblTipoConstruccion, javax.swing.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cmbTipoConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(262, 262, 262)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmbTipoConstruccion1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmbCarretera, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtMtsLote, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBanos, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtBanios, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblBanos)
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblHabitaciones)
-                    .addComponent(txtHabitaciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantHabitac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblCochera, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -185,7 +223,7 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                     .addComponent(lblDescripcion, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblId)
-                        .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdVivienda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -196,9 +234,9 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                 .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMtsConstruccion)
-                    .addComponent(txtMtsConstruccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMtsConstruct, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCarretera)
-                    .addComponent(cmbTipoConstruccion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbCarretera, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -208,7 +246,9 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                         .addGap(118, 118, 118))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
-                        .addComponent(txtBanos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBanios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblBanos))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -218,6 +258,11 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnGuardar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
@@ -225,6 +270,11 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
@@ -232,6 +282,11 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos Comerciales ", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 12))); // NOI18N
 
@@ -252,10 +307,10 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         lblCarretera1.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
         lblCarretera1.setText("Estado:");
 
-        txtMtsLote1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtDeposiGarant.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        cmbTipoConstruccion3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
-        cmbTipoConstruccion3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Inactiva", "Alquilada" }));
+        cmbEstado.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        cmbEstado.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Disponible", "Inactiva", "Alquilada" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -277,8 +332,8 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                     .addComponent(lblCarretera1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cmbTipoConstruccion3, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMtsLote1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDeposiGarant, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -289,13 +344,13 @@ public class DlgNewVivienda extends javax.swing.JDialog {
                     .addComponent(txtPrecioBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblPrecioBase)
                     .addComponent(lblMtsLote1)
-                    .addComponent(txtMtsLote1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDeposiGarant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTipoConstruccion1)
                     .addComponent(cmbTipoConstruccion2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCarretera1)
-                    .addComponent(cmbTipoConstruccion3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
 
@@ -341,6 +396,93 @@ public class DlgNewVivienda extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+
+            String id = txtIdVivienda.getText().trim();
+            String descripcion = txtDescripcion.getText().trim();
+            String direccion = txtDireccion.getText().trim();
+            double mtsConstruct = Double.parseDouble(txtMtsConstruct.getText().trim());
+            double mtsLote = Double.parseDouble(txtMtsLote.getText().trim());
+            String tipoConstruccion = (String) cmbTipoConstruccion.getSelectedItem();
+            boolean cochera = chkCochera.isSelected();
+            int habitaciones = Integer.parseInt(txtCantHabitac.getText().trim());
+            double banios = Double.parseDouble(txtBanios.getText().trim());
+            String carrera = (String) cmbCarretera.getSelectedItem();
+            double precioBase = Double.parseDouble(txtPrecioBase.getText().trim());
+            double deposito = Double.parseDouble(txtDeposiGarant.getText().trim());
+            String estado = (String) cmbEstado.getSelectedItem();
+
+            // Validar campos obligatorios
+            if (id.isEmpty() || descripcion.isEmpty() || direccion.isEmpty() || tipoConstruccion == null) {
+                JOptionPane.showMessageDialog(this, "⚠ Complete los campos obligatorios");
+                return;
+            }
+
+            //  NUEVA VIVIENDA 
+            if (operacion == 0) {
+                logica.Vivienda nueva = new logica.Vivienda(
+                        id, descripcion, direccion, mtsConstruct, mtsLote,
+                        tipoConstruccion, cochera, habitaciones, banios,
+                        carrera, precioBase, deposito, null, estado);
+
+                if (datos.GuanaRent.agregarVivienda(nueva)) {
+                    JOptionPane.showMessageDialog(this, " Vivienda Registrada");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, " Ese ID ya existe");
+                }
+            } //  MODIFICAR VIVIENDA 
+            else {
+                vivienda.setDescripcion(descripcion);
+                vivienda.setDireccion(direccion);
+                vivienda.setMtsConstruct(mtsConstruct);
+                vivienda.setMtsLote(mtsLote);
+                vivienda.setTipoConstruccion(tipoConstruccion);
+                vivienda.setCochera(cochera);
+                vivienda.setCantHabitac(habitaciones);
+                vivienda.setCantBanios(banios);
+                vivienda.setCarretera(carrera);
+                vivienda.setPrecioBase(precioBase);
+                vivienda.setDepositoGarantia(deposito);
+                vivienda.setEstado(estado);
+                JOptionPane.showMessageDialog(this, " Vivienda Modificada");
+                this.dispose();
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "️ Verifique que los números sean correctos");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, " Error: " + e.getMessage());
+        }
+
+
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        txtIdVivienda.setText("");
+        txtDescripcion.setText("");
+        txtDireccion.setText("");
+        txtMtsConstruct.setText("");
+        txtMtsLote.setText("");
+        cmbTipoConstruccion.setSelectedIndex(0);
+        chkCochera.setSelected(false);
+        txtCantHabitac.setText("");
+        txtBanios.setText("");
+        cmbCarretera.setSelectedIndex(0);
+        txtPrecioBase.setText("");
+        txtDeposiGarant.setText("");
+        cmbEstado.setSelectedIndex(0);
+        if (operacion == 0) {
+            txtIdVivienda.requestFocus();
+        }
+
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        this.dispose(); //Cierra la ventana
+    }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -389,10 +531,10 @@ public class DlgNewVivienda extends javax.swing.JDialog {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JCheckBox chkCochera;
+    private javax.swing.JComboBox<String> cmbCarretera;
+    private javax.swing.JComboBox<String> cmbEstado;
     private javax.swing.JComboBox<String> cmbTipoConstruccion;
-    private javax.swing.JComboBox<String> cmbTipoConstruccion1;
     private javax.swing.JComboBox<String> cmbTipoConstruccion2;
-    private javax.swing.JComboBox<String> cmbTipoConstruccion3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblBanos;
@@ -409,14 +551,14 @@ public class DlgNewVivienda extends javax.swing.JDialog {
     private javax.swing.JLabel lblPrecioBase;
     private javax.swing.JLabel lblTipoConstruccion;
     private javax.swing.JLabel lblTipoConstruccion1;
-    private javax.swing.JTextField txtBanos;
+    private javax.swing.JTextField txtBanios;
+    private javax.swing.JTextField txtCantHabitac;
+    private javax.swing.JTextField txtDeposiGarant;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtHabitaciones;
-    private javax.swing.JTextField txtId;
-    private javax.swing.JTextField txtMtsConstruccion;
+    private javax.swing.JTextField txtIdVivienda;
+    private javax.swing.JTextField txtMtsConstruct;
     private javax.swing.JTextField txtMtsLote;
-    private javax.swing.JTextField txtMtsLote1;
     private javax.swing.JTextField txtPrecioBase;
     // End of variables declaration//GEN-END:variables
 }
