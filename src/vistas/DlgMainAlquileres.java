@@ -11,6 +11,7 @@ import logica.Alquiler;
 /**
  *
  * @author Deilyn Medrano
+ * @author Erry
  */
 public class DlgMainAlquileres extends javax.swing.JDialog {
 

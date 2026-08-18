@@ -159,21 +159,25 @@
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="lblMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtMtsLote" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblMtsConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMtsConstruct" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                           <Component id="lblCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="cmbCarretera" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblMtsConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtMtsConstruct" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -183,12 +187,12 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="cmbTipoConstruccion" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                   <Component id="txtBanios" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="lblBanos" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <Component id="cmbTipoConstruccion" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -449,17 +453,15 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="lblPrecioBase" min="-2" pref="110" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="cmbTipoConstruccion2" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
-                              <Component id="txtPrecioBase" alignment="0" min="-2" pref="227" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="lblPrecioBase" alignment="0" min="-2" pref="110" max="-2" attributes="0"/>
                       <Component id="lblTipoConstruccion1" alignment="0" min="-2" pref="116" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="txtPrecioBase" pref="227" max="32767" attributes="0"/>
+                      <Component id="txtPropietario" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="317" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblMtsLote1" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCarretera1" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
@@ -486,9 +488,9 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblTipoConstruccion1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cmbTipoConstruccion2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblCarretera1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cmbEstado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtPropietario" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
@@ -518,25 +520,6 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Propietario:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JComboBox" name="cmbTipoConstruccion2">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Arial" size="12" style="3"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="Block"/>
-                <StringItem index="1" value="Baldosa"/>
-                <StringItem index="2" value="Super Block"/>
-                <StringItem index="3" value="Madera"/>
-                <StringItem index="4" value="Mixta"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="lblMtsLote1">
           <Properties>
@@ -577,6 +560,8 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPropietario">
         </Component>
       </SubComponents>
     </Container>

@@ -4,8 +4,11 @@
  */
 package vistas;
 
-import java.awt.Frame;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import logica.Alquiler;
+import logica.Inquilino;
+import logica.Vivienda;
 
 /**
  *
@@ -14,18 +17,91 @@ import logica.Alquiler;
  */
 public class DlgNewAlquileres extends javax.swing.JDialog {
 
+   private Alquiler alquiler;
+    private int operacion;
     /**
      * Creates new form DlgNewAlquileres
+     * @param parent
+     * @param modal
      */
     public DlgNewAlquileres(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+    operacion = 0;
+
+    txtNAlquiler.setText(
+            String.valueOf(datos.GuanaRent.contAlquiler));
+
+    txtEstado.setText("Vigente");
+    txtEstado.setEditable(false);
+
+    dtpFechaContrato.setDate(LocalDate.now());
+      
     }
 
-    DlgNewAlquileres(Frame frame, boolean b, Alquiler seleccionado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public DlgNewAlquileres(java.awt.Frame parent, boolean modal,
+        Alquiler alquiler) {
+
+    super(parent, modal);
+    initComponents();
+
+    setLocationRelativeTo(null);
+    setTitle("Modificar Alquiler");
+
+    this.alquiler = alquiler;
+    operacion = 1;
+
+    cargarDatos();
+}
+    private void cargarDatos() {
+
+    if (alquiler == null) {
+        return;
     }
 
+    txtNAlquiler.setText(
+            String.valueOf(alquiler.getNumAlquiler()));
+
+    dtpFechaContrato.setDate(
+            alquiler.getFechContrato());
+
+    txtCantMeses.setText(
+            String.valueOf(alquiler.getCantMeses()));
+
+    txtCantAdultos.setText(
+            String.valueOf(alquiler.getNumAdultos()));
+
+    txtCantNinos.setText(
+            String.valueOf(alquiler.getNumNinos()));
+
+    txtDeposiGarantia.setText(
+            String.valueOf(alquiler.getDepositoGarantia()));
+
+    txtPrecioAlqui.setText(
+            String.valueOf(alquiler.getPrecioAlquiler()));
+
+    txtIncreAnual.setText(
+            String.valueOf(alquiler.getPorcIncremAnual()));
+
+    if (alquiler.getInquilino() != null) {
+        txtInquilino.setText(
+                alquiler.getInquilino().getCedInqui());
+    }
+
+    if (alquiler.getVivienda() != null) {
+        txtVivienda.setText(
+                alquiler.getVivienda().getIdVivienda());
+    }
+
+    txtEstado.setText(alquiler.getEstado());
+
+    txtNAlquiler.setEnabled(false);
+    txtEstado.setEditable(false);
+}
+    
+
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -244,12 +320,27 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
 
         btnBuscarInquilino.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnBuscarInquilino.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnBuscarInquilino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarInquilinoActionPerformed(evt);
+            }
+        });
 
         btnBuscarVivienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnBuscarVivienda.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnBuscarVivienda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarViviendaActionPerformed(evt);
+            }
+        });
 
         btnBuscarEstado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/buscar.png"))); // NOI18N
         btnBuscarEstado.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnBuscarEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarEstadoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -336,6 +427,11 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
@@ -343,6 +439,11 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
@@ -350,6 +451,11 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -383,6 +489,222 @@ public class DlgNewAlquileres extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        try {
+
+    LocalDate fecha = dtpFechaContrato.getDate();
+
+    if (fecha == null) {
+        JOptionPane.showMessageDialog(
+                this,
+                "Seleccione la fecha del contrato.");
+        return;
+    }
+
+    int meses = Integer.parseInt(
+            txtCantMeses.getText().trim());
+
+    int adultos = Integer.parseInt(
+            txtCantAdultos.getText().trim());
+
+    int ninos = Integer.parseInt(
+            txtCantNinos.getText().trim());
+
+    double deposito = Double.parseDouble(
+            txtDeposiGarantia.getText().trim());
+
+    double precio = Double.parseDouble(
+            txtPrecioAlqui.getText().trim());
+
+    double incremento = Double.parseDouble(
+            txtIncreAnual.getText().trim());
+
+    String cedula = txtInquilino.getText().trim();
+    String idVivienda = txtVivienda.getText().trim();
+
+    Inquilino inquilino =
+            datos.GuanaRent.buscarInquilinoCed(cedula);
+
+    Vivienda vivienda =
+            datos.GuanaRent.buscarViviendaID(idVivienda);
+
+    if (inquilino == null) {
+        JOptionPane.showMessageDialog(
+                this,
+                "El inquilino no existe.");
+        return;
+    }
+
+    if (vivienda == null) {
+        JOptionPane.showMessageDialog(
+                this,
+                "La vivienda no existe.");
+        return;
+    }
+
+    if (operacion == 0) {
+
+        Alquiler nuevo = new Alquiler(
+                0,
+                fecha,
+                meses,
+                adultos,
+                ninos,
+                deposito,
+                precio,
+                incremento,
+                inquilino,
+                vivienda,
+                "Vigente"
+        );
+
+        if (datos.GuanaRent.agregarAlquiler(nuevo)) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Alquiler guardado correctamente.");
+
+            dispose();
+        }
+
+    } else {
+
+        Alquiler nuevo = new Alquiler(
+                alquiler.getNumAlquiler(),
+                fecha,
+                meses,
+                adultos,
+                ninos,
+                deposito,
+                precio,
+                incremento,
+                inquilino,
+                vivienda,
+                alquiler.getEstado()
+        );
+
+        if (datos.GuanaRent.modificarAlquiler(
+                alquiler.getNumAlquiler(), nuevo)) {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Alquiler modificado correctamente.");
+
+            dispose();
+
+        } else {
+
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No se pudo modificar el alquiler.");
+        }
+    }
+
+} catch (NumberFormatException e) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Ingrese valores numéricos válidos.");
+
+} catch (Exception e) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Error: " + e.getMessage());
+}
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        if (operacion == 0) {
+
+    txtCantMeses.setText("");
+    txtCantAdultos.setText("");
+    txtCantNinos.setText("");
+    txtDeposiGarantia.setText("");
+    txtPrecioAlqui.setText("");
+    txtIncreAnual.setText("");
+    txtInquilino.setText("");
+    txtVivienda.setText("");
+
+    txtEstado.setText("Vigente");
+
+    dtpFechaContrato.setDate(
+            LocalDate.now());
+
+} else {
+
+    cargarDatos();
+}
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnBuscarInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarInquilinoActionPerformed
+        String cedula = JOptionPane.showInputDialog(
+        this,
+        "Ingrese la cédula del inquilino:");
+
+if (cedula == null || cedula.trim().isEmpty()) {
+    return;
+}
+
+Inquilino inquilino =
+        datos.GuanaRent.buscarInquilinoCed(
+                cedula.trim());
+
+if (inquilino == null) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "El inquilino no existe.");
+
+} else {
+
+    txtInquilino.setText(
+            inquilino.getCedInqui());
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Inquilino encontrado.");
+}
+    }//GEN-LAST:event_btnBuscarInquilinoActionPerformed
+
+    private void btnBuscarViviendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarViviendaActionPerformed
+        String id = JOptionPane.showInputDialog(
+        this,
+        "Ingrese el ID de la vivienda:");
+
+if (id == null || id.trim().isEmpty()) {
+    return;
+}
+
+Vivienda vivienda =
+        datos.GuanaRent.buscarViviendaID(
+                id.trim());
+
+if (vivienda == null) {
+
+    JOptionPane.showMessageDialog(
+            this,
+            "La vivienda no existe.");
+
+} else {
+
+    txtVivienda.setText(
+            vivienda.getIdVivienda());
+
+    JOptionPane.showMessageDialog(
+            this,
+            "Vivienda encontrada.");
+}
+    }//GEN-LAST:event_btnBuscarViviendaActionPerformed
+
+    private void btnBuscarEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarEstadoActionPerformed
+        txtEstado.setText("Vigente");
+    }//GEN-LAST:event_btnBuscarEstadoActionPerformed
 
     /**
      * @param args the command line arguments
