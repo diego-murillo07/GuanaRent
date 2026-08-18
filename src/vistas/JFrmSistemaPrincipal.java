@@ -6,7 +6,7 @@ package vistas;
 
 /**
  *
- * @author user
+ * @author Erry
  */
 public class JFrmSistemaPrincipal extends javax.swing.JFrame {
 
