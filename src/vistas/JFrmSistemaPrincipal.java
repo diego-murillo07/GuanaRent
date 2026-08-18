@@ -16,6 +16,10 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
     public JFrmSistemaPrincipal() {
         initComponents();
         setLocationRelativeTo(null); // ← Centra la ventana al abrirse
+        
+        setIconImage(new javax.swing.ImageIcon(
+    getClass().getResource("/img/icon.png")
+).getImage());
     }
 
     /**
