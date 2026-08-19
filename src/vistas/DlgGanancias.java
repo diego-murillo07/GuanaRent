@@ -5,13 +5,21 @@
 package vistas;
 
 /**
+ * Ventana de dialogo para calcular y mostrar las ganancias del sistema. Permite
+ * seleecionar el cálculo por año completo o por mes específico. Valida los
+ * datos ingresados y muestra el resultado formateado
  *
  * @author Diego
  */
 public class DlgGanancias extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgGanancias
+     * Crea una nueva ventana de cálculo de ganancias. Inicializa los
+     * componentes gráficos y establece los valores por defecto: selección de
+     * año completo, combo de mes desactivado y etiqueta de resultado vacía.
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgGanancias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -185,17 +193,41 @@ public class DlgGanancias extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Acción al seleccionar la opción "Año Completo". Desactiva el combo de
+     * selección de mes ya que no se requiere cuando se calculan las ganancias
+     * de todo el año.
+     *
+     * @param evt Evento de acción generado al hacer clic en el botón
+     */
     private void rbAnioCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbAnioCompletoActionPerformed
+
         cmbMesGenerar1.setEnabled(false);
     }//GEN-LAST:event_rbAnioCompletoActionPerformed
-
+    /**
+     * Acción al seleccionar la opción "Mes Específico". Activa el combo
+     * desplegable para que el usuario pueda seleccionar el mes del cual desea
+     * calcular las ganancias.
+     *
+     * @param evt Evento de acción generado al hacer clic en el botón
+     */
     private void rbMesEspecificoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMesEspecificoActionPerformed
+
         cmbMesGenerar1.setEnabled(true);
     }//GEN-LAST:event_rbMesEspecificoActionPerformed
-
+    /**
+     * Realiza el cálculo de ganancias según los datos ingresados. Valida que el
+     * año no esté vacío y que sea un número válido. Si se selecciona año
+     * completo, llama al método de cálculo anual. Si se selecciona un mes
+     * específico, obtiene el mes del combo y llama al método de cálculo
+     * mensual. Finalmente muestra el resultado formateado en la etiqueta
+     * correspondiente.
+     *
+     * @param evt Evento de acción generado al presionar el botón
+     */
     private void btnCalcularGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularGananciaActionPerformed
-        // Validar que el año no esté vacío
+
+// Validar que el año no esté vacío
         if (jTextField1.getText().trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Debe ingresar un año.", "Aviso",

@@ -5,21 +5,28 @@
 package vistas;
 
 /**
+ * Ventana principal del sistema de gestión de alquileres GuanaRent. Es el punto
+ * de entrada a todos los módulos del sistema. Contiene botones para abrir cada
+ * uno de los diálogos de administración: propietarios, viviendas, inquilinos,
+ * alquileres, mensualidades y reporte de ganancias.
  *
  * @author Erry
+ * @version 1.0
  */
 public class JFrmSistemaPrincipal extends javax.swing.JFrame {
 
     /**
-     * Creates new form JFrmSistemaPrincipal
+     * Crea y configura la ventana principal del sistema. Inicializa los
+     * componentes gráficos, centra la ventana en pantalla, establece el ícono
+     * de la aplicación y deja todo listo para mostrar.
      */
     public JFrmSistemaPrincipal() {
         initComponents();
         setLocationRelativeTo(null); // ← Centra la ventana al abrirse
-        
+
         setIconImage(new javax.swing.ImageIcon(
-    getClass().getResource("/img/icon.png")
-).getImage());
+                getClass().getResource("/img/icon.png")
+        ).getImage());
     }
 
     /**
@@ -167,32 +174,66 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Abre la ventana de gestión de Propietarios. Muestra el listado completo y
+     * permite registrar, editar, eliminar y buscar.
+     *
+     * @param evt Evento al presionar el botón de Propietarios
+     */
     private void btnPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPropietariosActionPerformed
         DlgMainPropietario dlg = new DlgMainPropietario(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnPropietariosActionPerformed
-
+    /**
+     * Abre la ventana de gestión de Viviendas. Muestra el inventario de
+     * propiedades con sus características, permite registrar nuevas, editar,
+     * eliminar y buscar.
+     *
+     * @param evt Evento al presionar el botón de Viviendas
+     */
     private void btnViviendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViviendasActionPerformed
         DlgMainVivienda dlg = new DlgMainVivienda(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnViviendasActionPerformed
-
+    /**
+     * Abre la ventana de gestión de Inquilinos. Muestra las personas que
+     * alquilan las viviendas, sus datos personales y permite mantener el
+     * registro completo.
+     *
+     * @param evt Evento al presionar el botón de Inquilinos
+     */
     private void btnInquilinosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInquilinosActionPerformed
         DlgMainInquilinos dlg = new DlgMainInquilinos(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnInquilinosActionPerformed
-
+    /**
+     * Abre la ventana de gestión de Contratos de Alquiler. Administra los
+     * contratos vigentes y vencidos con sus condiciones, fechas, montos y
+     * relación entre inquilino y vivienda.
+     *
+     * @param evt Evento al presionar el botón de Alquileres
+     */
     private void btnAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlquileresActionPerformed
         DlgMainAlquileres dlg = new DlgMainAlquileres(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnAlquileresActionPerformed
-
+    /**
+     * Abre la ventana de administración de Mensualidades. Permite generar,
+     * consultar y filtrar las cuotas mensuales correspondientes a cada contrato
+     * de alquiler.
+     *
+     * @param evt Evento al presionar el botón de Mensualidades
+     */
     private void btnMensualidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMensualidadesActionPerformed
         DlgMensualidades dlg = new DlgMensualidades(this, true);
         dlg.setVisible(true);
     }//GEN-LAST:event_btnMensualidadesActionPerformed
-
+    /**
+     * Abre la ventana de reporte de Ganancias. Calcula y muestra los ingresos
+     * totales por alquileres, descuentos aplicados y utilidades del sistema.
+     *
+     * @param evt Evento al presionar el botón de Ganancias
+     */
     private void btnGananciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGananciasActionPerformed
         DlgGanancias dlg = new DlgGanancias(this, true);
         dlg.setVisible(true);

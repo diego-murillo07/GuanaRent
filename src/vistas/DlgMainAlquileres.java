@@ -9,23 +9,38 @@ import javax.swing.table.DefaultTableModel;
 import logica.Alquiler;
 
 /**
+ * Ventana principal de administración de contratos de alquiler. Muestra todos
+ * los alquileres registrados en una tabla, permite buscar, insertar nuevos
+ * contratos, editar existentes y eliminar.
  *
  * @author Deilyn Medrano
  * @author Erry
+ * @version 1.0
  */
 public class DlgMainAlquileres extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgMainAlquileres
+     * Crea la ventana principal de alquileres. Inicializa los componentes
+     * gráficos y carga automáticamente la tabla con todos los contratos
+     * registrados.
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgMainAlquileres(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         cargarTabla();
     }
 
-        private void cargarTabla() {
+    /**
+     * Carga y muestra todos los contratos de alquiler en la tabla. Define las
+     * columnas con los datos del contrato, recorre la lista completa de
+     * alquileres y llena cada fila. Muestra también la cantidad total de
+     * contratos registrados.
+     */
+    private void cargarTabla() {
 
         String[] columnas = {
             "N° Alquiler",
@@ -41,8 +56,8 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
             "Estado"
         };
 
-        DefaultTableModel modelo =
-                new DefaultTableModel(null, columnas);
+        DefaultTableModel modelo
+                = new DefaultTableModel(null, columnas);
 
         for (Alquiler a : datos.GuanaRent.listaAlquileres) {
 
@@ -81,11 +96,16 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                 String.valueOf(
                         datos.GuanaRent.listaAlquileres.size()));
     }
-        
+
+    /**
+     * Busca y muestra en la tabla solo los alquileres que coincidan con el
+     * texto ingresado. Busca por número, cédula, vivienda o estado. No
+     * distingue entre mayúsculas y minúsculas.
+     */
     private void buscarAlquileres() {
 
-        String buscar =
-                txtBuscar.getText()
+        String buscar
+                = txtBuscar.getText()
                         .trim()
                         .toLowerCase();
 
@@ -103,8 +123,8 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
             "Estado"
         };
 
-        DefaultTableModel modelo =
-                new DefaultTableModel(null, columnas);
+        DefaultTableModel modelo
+                = new DefaultTableModel(null, columnas);
 
         for (Alquiler a : datos.GuanaRent.listaAlquileres) {
 
@@ -119,8 +139,8 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                 vivienda = a.getVivienda().getIdVivienda();
             }
 
-            String texto =
-                    String.valueOf(a.getNumAlquiler())
+            String texto
+                    = String.valueOf(a.getNumAlquiler())
                     + " "
                     + cedula
                     + " "
@@ -151,7 +171,7 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
         txtCantAlquileres.setText(
                 String.valueOf(modelo.getRowCount()));
     }
-        
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -308,9 +328,17 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+ /**
+     * Abre la ventana para editar el alquiler seleccionado en la tabla.
+     * Verifica que se haya seleccionado una fila, obtiene el número del
+     * contrato, lo busca en la lista y abre la ventana de modificación. Al
+     * cerrar, actualiza la tabla con los cambios.
+     *
+     * @param evt Evento de acción al presionar el botón Editar
+     */
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+
         int fila = tblAlquileres.getSelectedRow();
 
         if (fila == -1) {
@@ -327,13 +355,13 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
                         .getValueAt(fila, 0)
                         .toString());
 
-        Alquiler seleccionado =
-                datos.GuanaRent.buscarAlquiler(numero);
+        Alquiler seleccionado
+                = datos.GuanaRent.buscarAlquiler(numero);
 
         if (seleccionado != null) {
 
-            DlgNewAlquileres dlg =
-                    new DlgNewAlquileres(
+            DlgNewAlquileres dlg
+                    = new DlgNewAlquileres(
                             (java.awt.Frame) this.getParent(),
                             true,
                             seleccionado);
@@ -343,9 +371,16 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
             cargarTabla();
         }
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    /**
+     * Elimina el alquiler seleccionado tras confirmación del usuario. Verifica
+     * selección, pide confirmación, elimina y recarga la tabla. Muestra mensaje
+     * de éxito o error según resultado.
+     *
+     * @param evt Evento de acción al presionar el botón Eliminar
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         int fila = tblAlquileres.getSelectedRow();
+
+        int fila = tblAlquileres.getSelectedRow();
 
         if (fila == -1) {
 
@@ -386,10 +421,16 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Abre la ventana para registrar un nuevo contrato de alquiler. Al cerrar
+     * la ventana, recarga la tabla para mostrar el nuevo registro.
+     *
+     * @param evt Evento de acción al presionar el botón Insertar
+     */
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-       DlgNewAlquileres dlg =
-                new DlgNewAlquileres(
+
+        DlgNewAlquileres dlg
+                = new DlgNewAlquileres(
                         (java.awt.Frame) this.getParent(),
                         true);
 
@@ -397,9 +438,14 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
 
         cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
-
+    /**
+     * Ejecuta la búsqueda automáticamente al escribir en el campo.
+     *
+     * @param evt Evento de acción al cambiar el texto de búsqueda
+     */
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-         buscarAlquileres();
+
+        buscarAlquileres();
     }//GEN-LAST:event_txtBuscarActionPerformed
 
     private void txtCantAlquileresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantAlquileresActionPerformed

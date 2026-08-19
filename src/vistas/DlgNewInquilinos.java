@@ -9,18 +9,28 @@ import javax.swing.JOptionPane;
 import logica.Inquilino;
 
 /**
+ * Ventana de formulario para registrar o modificar inquilinos. Dos modos de
+ * operación: - Registrar nuevo: todos los campos editables, cédula se ingresa
+ * libre - Modificar existente: cédula no editable, se cargan los datos actuales
+ * y se permiten editar los demás campos.
  *
  * @author Deilyn Medrano
- * @author Erry - Interfaz Terminada
+ * @author Erry – Interfaz Terminada
+ * @version 1.0
  */
 public class DlgNewInquilinos extends javax.swing.JDialog {
+
     private Inquilino inquilino;
     private int operacion;
 
     /**
-     * Creates new form DlgNewInquilinos
+     * Constructor para NUEVO registro de inquilino. Abre la ventana en blanco
+     * con título"Registrar Inquilino"
+     *
+     * @param parent Ventana padre que invoca este diálogo.
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
-     public DlgNewInquilinos(java.awt.Frame parent, boolean modal) {
+    public DlgNewInquilinos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -28,6 +38,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         operacion = 0;
     }
 
+    /**
+     * Constructor para MODIFICAR un inquilino existente. Carga los datos del
+     * inquilino en los campos, desactiva edición de la cédula y cambia el
+     * título a "Modificar Inquilino".
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
+     * @param inq Objeto inquilino con los datos a modificar
+     */
     // ==== CONSTRUCTOR 2: MODIFICAR Inquilino ====
     public DlgNewInquilinos(java.awt.Frame parent, boolean modal, Inquilino inq) {
         super(parent, modal);
@@ -37,9 +56,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         this.inquilino = inq;
         operacion = 1;
         cargarDatosEnCampos();
-        }
-    
-     // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
+    }
+
+    /**
+     * Carga los datos del inquilino en los campos del formulario. Se usa SOLO
+     * en modo modificar: muestra cédula, nombre, dirección, teléfono, correo,
+     * ocupación, género y fecha de nacimiento. Además bloquea la edición de la
+     * cédula para que no se pueda cambiar.
+     */
+    // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
     private void cargarDatosEnCampos() {
         if (inquilino != null) {
             txtCedula.setText(inquilino.getCedInqui());
@@ -50,7 +75,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
             txtOcupacion.setText(inquilino.getOcupacion());
             cmbGenero.setSelectedItem(inquilino.getGenero());
             dtpFechNacimiento.setDate(inquilino.getFechNac());
-            txtCedula.setEditable(false); 
+            txtCedula.setEditable(false);
         }
     }
 
@@ -283,10 +308,19 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Acción al presionar el botón Guardar. Lee todos los campos, valida que
+     * los obligatorios no estén vacíos, y según el modo: - REGISTRAR: crea
+     * objeto nuevo, valida que la cédula no exista, agrega a la lista y cierra
+     * la ventana. - MODIFICAR: actualiza los campos del objeto existente,
+     * guarda cambios y cierra la ventana. Muestra mensajes de éxito o error
+     * según corresponda.
+     *
+     * @param evt Evento de acción al presionar el botón Guardar
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            
+
             String cedula = txtCedula.getText().trim();
             String nombre = txtNombre.getText().trim();
             String genero = (String) cmbGenero.getSelectedItem();
@@ -298,15 +332,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
             // Validar obligatorios
             if (cedula.isEmpty() || nombre.isEmpty() || fechaNac == null) {
-                JOptionPane.showMessageDialog(this, 
-                    "️ Cédula, Nombre y Fecha son obligatorios");
+                JOptionPane.showMessageDialog(this,
+                        "️ Cédula, Nombre y Fecha son obligatorios");
                 return;
             }
 
             //  ==== NUEVO INQUILINO ====
             if (operacion == 0) {
-                Inquilino nuevo = new Inquilino(cedula, nombre, genero, 
-                    fechaNac, direccion, telefono, correo, ocupacion);
+                Inquilino nuevo = new Inquilino(cedula, nombre, genero,
+                        fechaNac, direccion, telefono, correo, ocupacion);
 
                 //  GUARDAR EN LA LISTA GLOBAL
                 if (datos.GuanaRent.agregarInquilino(nuevo)) {
@@ -315,8 +349,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(this, "️ Esa cédula ya existe");
                 }
-            }
-            //  ==== MODIFICAR ====
+            } //  ==== MODIFICAR ====
             else {
                 inquilino.setNomInqui(nombre);
                 inquilino.setGenero(genero);
@@ -333,18 +366,28 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, " ERROR: " + e.getMessage());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+    /**
+     * Acción al presionar el botón Limpiar. Borra todo el contenido de los
+     * campos y restablece el género a la primera opción del desplegable.
+     *
+     * @param evt Evento de acción al presionar Limpiar
+     */
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-         txtCedula.setText("");
+        txtCedula.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
         txtEmail.setText("");
         ftxtTelefono.setText("");
         cmbGenero.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    /**
+     * Acción al presionar el botón Cancelar. Cierra la ventana sin guardar ni
+     * modificar nada.
+     *
+     * @param evt Evento de acción al presionar Cancelar
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void txtOcupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOcupacionActionPerformed
