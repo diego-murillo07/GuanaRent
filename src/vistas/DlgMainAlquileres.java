@@ -41,7 +41,7 @@ public class DlgMainAlquileres extends javax.swing.JDialog {
      * contratos registrados.
      */
     private void cargarTabla() {
-
+        datos.GuanaRent.actualizarEstadosAlquileres();
         String[] columnas = {
             "N° Alquiler",
             "Fecha Contrato",

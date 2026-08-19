@@ -4,6 +4,8 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  * Ventana de dialogo para calcular y mostrar las ganancias del sistema. Permite
  * seleecionar el cálculo por año completo o por mes específico. Valida los
@@ -249,7 +251,13 @@ public class DlgGanancias extends javax.swing.JDialog {
         if (rbAnioCompleto.isSelected()) {
             resultado = datos.GuanaRent.calcularGananciasAnio(anio);
         } else {
-            int mes = cmbMesGenerar1.getSelectedIndex() + 1; // Enero = 1
+            if (cmbMesGenerar1.getSelectedIndex() == 0) {
+                javax.swing.JOptionPane.showMessageDialog(this,
+                        "Debe seleccionar un mes.", "Aviso",
+                        JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            int mes = cmbMesGenerar1.getSelectedIndex(); // Enero = 1
             resultado = datos.GuanaRent.calcularGananciasMes(mes, anio);
         }
 
