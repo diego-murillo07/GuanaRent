@@ -9,7 +9,7 @@ import logica.Propietario;
 import logica.Vivienda;
 
 /**
- *
+ *Ventana de formulario para registrar o modificar viviendas.
  * @author Diego
  */
 public class DlgNewVivienda extends javax.swing.JDialog {

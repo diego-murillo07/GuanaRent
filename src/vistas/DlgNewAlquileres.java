@@ -12,6 +12,8 @@ import logica.Vivienda;
 
 /**
  *
+ * Ventana de formulario para registrar o modificar contratos de alquiler
+ *
  * @author Deilyn Medrano
  * @author Erry - Interfaz Terminada
  */

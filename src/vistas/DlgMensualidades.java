@@ -14,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import logica.Mensualidad;
 
 /**
- *
+ *Ventana de Dialogo para generar y 
+ * consultar mensualidades de alquiler
  * @author Erry
  */
 public class DlgMensualidades extends javax.swing.JDialog {
@@ -40,15 +41,12 @@ public class DlgMensualidades extends javax.swing.JDialog {
         datePicker1.setDate(hoy);
         datePicker1.setEnabled(false);
 
-        // Configurar DatePicker con la fecha actual
         datePicker1.setDate(hoy);
         datePicker1.setEnabled(false);
 
-        // Colocar el año actual
         txtAnioGenerar.setText(String.valueOf(hoy.getYear()));
         txtAnioMostrar.setText(String.valueOf(hoy.getYear()));
 
-        // Mostrar todas las mensualidades al abrir
         configurarFiltroTexto();
         mostrarTabla(GuanaRent.mostrarMensualidades());
     }
@@ -98,7 +96,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
         String texto = txtBuscar.getText().trim().toLowerCase();
 
-        // Si no hay ningún filtro seleccionado, o si aún no se ha escrito nada
         if ((!chkInquilino.isSelected()
                 && !chkMes.isSelected()
                 && !chkAnio.isSelected())
@@ -129,7 +126,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
             boolean coincide = false;
 
-            // FILTRO POR INQUILINO
             if (chkInquilino.isSelected()) {
 
                 if (m.getNomInquilino() != null
@@ -141,7 +137,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 }
             }
 
-            // FILTRO POR MES
             if (chkMes.isSelected()) {
 
                 int mes = m.getMesCobro();
@@ -156,7 +151,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 }
             }
 
-            // FILTRO POR AÑO
             if (chkAnio.isSelected()) {
 
                 String anio = String.valueOf(
@@ -606,7 +600,7 @@ public class DlgMensualidades extends javax.swing.JDialog {
         }
 
         txtBuscar.setText("");
-        aplicarFiltro();// TODO add your handling code here:
+        aplicarFiltro();
     }//GEN-LAST:event_chkInquilinoActionPerformed
     /**
      * Activa el filtro por año y desmarca los otros filtros (Inquilino, Mes)

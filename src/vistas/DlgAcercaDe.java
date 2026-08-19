@@ -5,6 +5,7 @@
 package vistas;
 
 /**
+ * Ventana para Mostrar el enlace de git y los nombres de los integrantes 
  *
  * @author Diego
  */
@@ -13,6 +14,8 @@ public class DlgAcercaDe extends javax.swing.JDialog {
     /**
      * Creates new form DlgAcercaDe
      */
+    
+    
     public DlgAcercaDe(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
