@@ -4,18 +4,66 @@
  */
 package vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
+ * Ventana principal de gestión de viviendas. Muestra todas las propiedades
+ * registradas en una tabla con sus datos de identificación, ubicación,
+ * características físicas y estado. Permite buscar, registrar nuevas viviendas,
+ * editar y eliminar.
  *
  * @author Diego
+ * @version 1.0
  */
 public class DlgMainVivienda extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgMainVivienda
+     * Crea la ventana principal de administración de viviendas. Inicializa los
+     * componentes gráficos, centra la ventana en pantalla, asigna el título y
+     * carga automáticamente la tabla con todos los registros.
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgMainVivienda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("Gestión de Vivienda");
+        cargarTabla();
+    }
+
+    /**
+     * Carga y muestra todas las viviendas registradas en la tabla. Define las
+     * columnas con los datos de identificación, ubicación, medidas,
+     * características y estado. Recorre la lista completa y llena cada fila.
+     * Muestra también la cantidad total de registros.
+     */
+    // ==== CARGAR TABLA ====
+    private void cargarTabla() {
+        // Definir nombres de las columnas que se mostrarán en la tabla
+        String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
+            "M² Lote", "Tipo", "Habitaciones", "Precio Base", "Estado"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            Object[] fila = {
+                viv.getIdVivienda(),
+                viv.getDescripcion(),
+                viv.getDireccion(),
+                viv.getMtsConstruct(),
+                viv.getMtsLote(),
+                viv.getTipoConstruccion(),
+                viv.getCantHabitac(),
+                viv.getPrecioBase(),
+                viv.getEstado()
+            };
+            modelo.addRow(fila);
+        }
+
+        tblViviendas.setModel(modelo);
+        txtCantViviendas.setText(String.valueOf(datos.GuanaRent.listaViviendas.size()));
     }
 
     /**
@@ -27,7 +75,7 @@ public class DlgMainVivienda extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtCantPropietarios = new javax.swing.JTextField();
+        txtCantViviendas = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         lblBuscar = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
@@ -35,47 +83,62 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         btnEditar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblPropietario = new javax.swing.JTable();
+        tblViviendas = new javax.swing.JTable();
         lblCantPropietarios = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Viviendas");
 
-        txtCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
-        txtCantPropietarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCantPropietariosActionPerformed(evt);
-            }
-        });
+        txtCantViviendas.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblBuscar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblBuscar.setText("Buscar:");
 
         txtBuscar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtBuscarActionPerformed(evt);
+            }
+        });
 
-        btnInsertar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        btnInsertar.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         btnInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/agregar.png"))); // NOI18N
         btnInsertar.setText("Insertar");
         btnInsertar.setHideActionText(true);
         btnInsertar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnInsertar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnInsertar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
 
-        btnEditar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        btnEditar.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/editar.png"))); // NOI18N
         btnEditar.setText("Editar");
         btnEditar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEditar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEditar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
-        btnEliminar.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Arial", 2, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Eliminar.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEliminar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnEliminar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,34 +148,34 @@ public class DlgMainVivienda extends javax.swing.JDialog {
                 .addGap(13, 13, 13)
                 .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnInsertar)
                 .addGap(18, 18, 18)
-                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnEditar)
+                .addGap(18, 18, 18)
+                .addComponent(btnEliminar)
+                .addGap(22, 22, 22))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnInsertar))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)))
-                .addContainerGap(41, Short.MAX_VALUE))
+                            .addComponent(lblBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnEditar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnInsertar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnEliminar))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        tblPropietario.setModel(new javax.swing.table.DefaultTableModel(
+        tblViviendas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -120,9 +183,9 @@ public class DlgMainVivienda extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane1.setViewportView(tblPropietario);
+        jScrollPane1.setViewportView(tblViviendas);
 
-        lblCantPropietarios.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblCantPropietarios.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblCantPropietarios.setText("Cant.Viviendas:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,36 +195,150 @@ public class DlgMainVivienda extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addComponent(txtCantViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCantPropietarios)
-                    .addComponent(txtCantPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCantViviendas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/**
+     * Abre la ventana para registrar una nueva vivienda. Al cerrar la ventana
+     * de registro, recarga la tabla para mostrar automáticamente el nuevo
+     * registro agregado.
+     *
+     * @param evt Evento de acción al presionar el botón Insertar
+     */
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        DlgNewVivienda dlg = new DlgNewVivienda((java.awt.Frame) this.getParent(), true);
+        dlg.setVisible(true);
+        cargarTabla();
+    }//GEN-LAST:event_btnInsertarActionPerformed
+    /**
+     * Abre la ventana para modificar los datos de la vivienda seleccionada.
+     * Verifica que se haya seleccionado una fila, obtiene el identificador,
+     * busca el objeto en la lista y abre la ventana en modo edición. Al cerrar,
+     * actualiza la tabla con los cambios.
+     *
+     * @param evt Evento de acción al presionar el botón Editar
+     */
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int fila = tblViviendas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una vivienda de la tabla");
+            return;
+        }
+        String id = tblViviendas.getValueAt(fila, 0).toString();
 
-    private void txtCantPropietariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCantPropietariosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantPropietariosActionPerformed
+        logica.Vivienda seleccionada = null;
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            if (viv.getIdVivienda().equals(id)) {
+                seleccionada = viv;
+                break;
+            }
+        }
+
+        if (seleccionada != null) {
+            DlgNewVivienda dlg = new DlgNewVivienda(
+                    (java.awt.Frame) this.getParent(), true, seleccionada);
+            dlg.setVisible(true);
+            cargarTabla();
+        }
+
+    }//GEN-LAST:event_btnEditarActionPerformed
+    /**
+     * Elimina la vivienda seleccionada tras confirmación del usuario. Verifica
+     * la selección, obtiene el identificador, pide confirmación, elimina de la
+     * lista y recarga la tabla. Muestra mensaje de confirmación.
+     *
+     * @param evt Evento de acción al presionar el botón Eliminar
+     */
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = tblViviendas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una vivienda de la tabla");
+            return;
+        }
+        String id = tblViviendas.getValueAt(fila, 0).toString();
+
+        int opcion = JOptionPane.showConfirmDialog(this,
+                "¿Eliminar la vivienda con ID: " + id + "?",
+                "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            logica.Vivienda eliminar = null;
+            for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+                if (viv.getIdVivienda().equals(id)) {
+                    eliminar = viv;
+                    break;
+                }
+            }
+            if (eliminar != null) {
+                datos.GuanaRent.listaViviendas.remove(eliminar);
+                JOptionPane.showMessageDialog(this, "Vivienda Eliminada");
+                cargarTabla();
+            }
+        }
+
+    }//GEN-LAST:event_btnEliminarActionPerformed
+    /**
+     * Filtra y muestra en la tabla solo las viviendas que coincidan con el
+     * texto ingresado. Busca por identificador, descripción o dirección,
+     * ignorando mayúsculas y minúsculas.
+     *
+     * @param evt Evento al presionar Enter en el campo de búsqueda
+     */
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
+        String buscar = txtBuscar.getText().trim().toLowerCase();
+        String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
+            "M² Lote", "Tipo", "Habitaciones", "Precio Base", "Estado"};
+        DefaultTableModel modelo = new DefaultTableModel(null, columnas);
+
+        // Filtrar por ID, Descripción o Dirección
+        for (logica.Vivienda viv : datos.GuanaRent.listaViviendas) {
+            if (viv.getIdVivienda().toLowerCase().contains(buscar)
+                    || viv.getDescripcion().toLowerCase().contains(buscar)
+                    || viv.getDireccion().toLowerCase().contains(buscar)) {
+
+                modelo.addRow(new Object[]{
+                    viv.getIdVivienda(),
+                    viv.getDescripcion(),
+                    viv.getDireccion(),
+                    viv.getMtsConstruct(),
+                    viv.getMtsLote(),
+                    viv.getTipoConstruccion(),
+                    viv.getCantHabitac(),
+                    viv.getPrecioBase(),
+                    viv.getEstado()
+                });
+            }
+        }
+
+        tblViviendas.setModel(modelo);
+        txtCantViviendas.setText(String.valueOf(modelo.getRowCount()));
+
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,8 +390,8 @@ public class DlgMainVivienda extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBuscar;
     private javax.swing.JLabel lblCantPropietarios;
-    private javax.swing.JTable tblPropietario;
+    private javax.swing.JTable tblViviendas;
     private javax.swing.JTextField txtBuscar;
-    private javax.swing.JTextField txtCantPropietarios;
+    private javax.swing.JTextField txtCantViviendas;
     // End of variables declaration//GEN-END:variables
 }

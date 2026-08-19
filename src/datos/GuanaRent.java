@@ -119,69 +119,6 @@ public class GuanaRent {
     }
 
     /**
-     * Modifica un propietario existente.
-     *
-     * @param ced cédula del propietario que se desea modificar.
-     * @param nuevo nuevos datos del propietario.
-     * @return true si se modificó correctamente.
-     */
-    public static boolean modificarPropietario(
-            String ced,
-            Propietario nuevo) {
-
-        Propietario actual
-                = buscarPropietarioCed(ced);
-
-        if (actual == null || nuevo == null) {
-            return false;
-        }
-
-        actual.setNomPropiet(nuevo.getNomPropiet());
-        actual.setGenero(nuevo.getGenero());
-        actual.setDireccion(nuevo.getDireccion());
-        actual.setTelefono(nuevo.getTelefono());
-        actual.setEmail(nuevo.getEmail());
-
-        return true;
-    }
-
-    /**
-     * Elimina un propietario.
-     *
-     * No se permite eliminarlo si tiene viviendas registradas.
-     *
-     * @param ced cédula del propietario.
-     * @return true si se eliminó correctamente.
-     */
-    public static boolean eliminarPropietario(String ced) {
-
-        Propietario propietario
-                = buscarPropietarioCed(ced);
-
-        if (propietario == null) {
-            return false;
-        }
-
-        for (Vivienda v : listaViviendas) {
-
-            if (v.getPropietario() == propietario) {
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se puede eliminar el propietario "
-                        + "porque tiene viviendas registradas.",
-                        "Validación",
-                        JOptionPane.WARNING_MESSAGE
-                );
-
-                return false;
-            }
-        }
-
-        return listaPropietarios.remove(propietario);
-    }
-
-    /**
      * Obtiene todos los propietarios registrados.
      *
      * @return ArrayList de propietarios.
@@ -246,73 +183,6 @@ public class GuanaRent {
         }
 
         return null;
-    }
-
-    /**
-     * Modifica un inquilino existente.
-     *
-     * @param ced cédula del inquilino.
-     * @param nuevo nuevos datos del inquilino.
-     * @return true si se modificó correctamente.
-     */
-    public static boolean modificarInquilino(
-            String ced,
-            Inquilino nuevo) {
-
-        Inquilino actual
-                = buscarInquilinoCed(ced);
-
-        if (actual == null || nuevo == null) {
-            return false;
-        }
-
-        actual.setNomInqui(nuevo.getNomInqui());
-        actual.setGenero(nuevo.getGenero());
-        actual.setFechNac(nuevo.getFechNac());
-        actual.setDireccion(nuevo.getDireccion());
-        actual.setTelefono(nuevo.getTelefono());
-        actual.setEmail(nuevo.getEmail());
-        actual.setOcupacion(nuevo.getOcupacion());
-
-        return true;
-    }
-
-    /**
-     * Elimina un inquilino.
-     *
-     * No se permite eliminarlo si tiene un alquiler vigente.
-     *
-     * @param ced cédula del inquilino.
-     * @return true si se eliminó correctamente.
-     */
-    public static boolean eliminarInquilino(String ced) {
-
-        Inquilino inquilino
-                = buscarInquilinoCed(ced);
-
-        if (inquilino == null) {
-            return false;
-        }
-
-        for (Alquiler a : listaAlquileres) {
-
-            if (a.getInquilino() == inquilino
-                    && "Vigente".equalsIgnoreCase(
-                            a.getEstado())) {
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se puede eliminar el inquilino "
-                        + "porque tiene un alquiler vigente.",
-                        "Validación",
-                        JOptionPane.WARNING_MESSAGE
-                );
-
-                return false;
-            }
-        }
-
-        return listaInquilinos.remove(inquilino);
     }
 
     /**
@@ -407,79 +277,6 @@ public class GuanaRent {
         }
 
         return null;
-    }
-
-    /**
-     * Modifica una vivienda.
-     *
-     * @param id identificador de la vivienda.
-     * @param nueva nuevos datos.
-     * @return true si se modificó correctamente.
-     */
-    public static boolean modificarVivienda(
-            String id,
-            Vivienda nueva) {
-
-        Vivienda actual
-                = buscarViviendaID(id);
-
-        if (actual == null || nueva == null) {
-            return false;
-        }
-
-        actual.setDescripcion(nueva.getDescripcion());
-        actual.setDireccion(nueva.getDireccion());
-        actual.setMtsConstruct(nueva.getMtsConstruct());
-        actual.setMtsLote(nueva.getMtsLote());
-        actual.setTipoConstruccion(nueva.getTipoConstruccion());
-        actual.setCochera(nueva.isCochera());
-        actual.setCantHabitac(nueva.getCantHabitac());
-        actual.setCantBanios(nueva.getCantBanios());
-        actual.setCarretera(nueva.getCarretera());
-        actual.setPrecioBase(nueva.getPrecioBase());
-        actual.setDepositoGarantia(nueva.getDepositoGarantia());
-        actual.setPropietario(nueva.getPropietario());
-        actual.setEstado(nueva.getEstado());
-
-        return true;
-    }
-
-    /**
-     * Elimina una vivienda.
-     *
-     * No se permite eliminarla si posee un alquiler vigente.
-     *
-     * @param id identificador de la vivienda.
-     * @return true si se eliminó correctamente.
-     */
-    public static boolean eliminarVivienda(String id) {
-
-        Vivienda vivienda
-                = buscarViviendaID(id);
-
-        if (vivienda == null) {
-            return false;
-        }
-
-        for (Alquiler a : listaAlquileres) {
-
-            if (a.getVivienda() == vivienda
-                    && "Vigente".equalsIgnoreCase(
-                            a.getEstado())) {
-
-                JOptionPane.showMessageDialog(
-                        null,
-                        "No se puede eliminar la vivienda "
-                        + "porque posee un alquiler vigente.",
-                        "Validación",
-                        JOptionPane.WARNING_MESSAGE
-                );
-
-                return false;
-            }
-        }
-
-        return listaViviendas.remove(vivienda);
     }
 
     /**
@@ -1020,6 +817,5 @@ public class GuanaRent {
 
         return total;
     }
-    
-       
+
 }

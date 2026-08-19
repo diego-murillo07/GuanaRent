@@ -54,41 +54,20 @@ public class DlgMensualidades extends javax.swing.JDialog {
     }
 
     /**
-     * Genera las mensualidades del mes y año seleccionados.
-     */
-    private void generarMensualidades() {
-        int mes = cmbMesGenerar.getSelectedIndex() + 1;
-        int anio;
-
-        try {
-            anio = Integer.parseInt(txtAnioGenerar.getText().trim());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Ingrese un año válido de 4 dígitos.",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (anio < 1000 || anio > 9999) {
-            JOptionPane.showMessageDialog(this,
-                    "El año debe tener 4 dígitos.",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        GuanaRent.generarMensualidades(mes, anio);
-        mostrarTabla(GuanaRent.buscarMensualidades(mes, anio));
-    }
-
-    /**
      * Muestra las mensualidades del mes y año seleccionados.
      */
     private void mostrarMensualidades() {
-        int mes = cmbMesGenerar1.getSelectedIndex() + 1;
-        int anio;
+        int mes = cmbMesGenerar1.getSelectedIndex();
 
+        if (mes == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccione un mes.",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int anio;
         try {
             anio = Integer.parseInt(txtAnioMostrar.getText().trim());
         } catch (NumberFormatException ex) {
@@ -112,16 +91,18 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
     /**
      * Aplica los filtros seleccionados mediante los JCheckBox. Si no se
-     * selecciona ningún filtro, muestra todos los registros.
+     * selecciona ningún filtro, o si el cuadro de búsqueda está vacío, muestra
+     * todos los registros.
      */
     private void aplicarFiltro() {
 
         String texto = txtBuscar.getText().trim().toLowerCase();
 
-        // Si no hay ningún filtro seleccionado
-        if (!chkInquilino.isSelected()
+        // Si no hay ningún filtro seleccionado, o si aún no se ha escrito nada
+        if ((!chkInquilino.isSelected()
                 && !chkMes.isSelected()
-                && !chkAnio.isSelected()) {
+                && !chkAnio.isSelected())
+                || texto.isEmpty()) {
 
             mostrarTabla(GuanaRent.mostrarMensualidades());
             return;
@@ -235,6 +216,11 @@ public class DlgMensualidades extends javax.swing.JDialog {
         jTable1.setModel(modelo);
     }
 
+    /**
+     * Configura el filtro de búsqueda en tiempo real del campo de texto. Agrega
+     * un DocumentListener que ejecuta el filtrado automáticamente cada vez que
+     * el usuario escribe, borra o modifica el texto de búsqueda.
+     */
     private void configurarFiltroTexto() {
 
         txtBuscar.getDocument().addDocumentListener(
@@ -522,6 +508,15 @@ public class DlgMensualidades extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Genera las mensualidades del mes y año seleccionados para todos los
+     * alquileres vigentes. Valida que se haya elegido un mes y que el año
+     * ingresado sea válido (4 dígitos) antes de llamar a
+     * GuanaRent.generarMensualidades, y luego refresca la tabla con las
+     * mensualidades recién creadas.
+     *
+     * @param evt Evento al presionar el botón Generar
+     */
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         int mes = cmbMesGenerar.getSelectedIndex();
 
@@ -566,15 +561,29 @@ public class DlgMensualidades extends javax.swing.JDialog {
         );
 
     }//GEN-LAST:event_btnGenerarActionPerformed
-
+    /**
+     * Muestra en la tabla las mensualidades correspondientes al mes y año
+     * indicados en el panel de consulta.
+     *
+     * @param evt Evento al presionar el botón Mostrar Mensualidades
+     */
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         mostrarMensualidades();
     }//GEN-LAST:event_btnMostrarActionPerformed
-
+    /**
+     * Aplica el filtro de búsqueda al presionar Enter en el campo de texto.
+     *
+     * @param evt Evento al presionar Enter en el campo de búsqueda
+     */
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         aplicarFiltro();
     }//GEN-LAST:event_txtBuscarActionPerformed
-
+    /**
+     * Activa el filtro por mes y desmarca los otros filtros (Inquilino, Año)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Mes
+     */
     private void chkMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMesActionPerformed
         if (chkMes.isSelected()) {
             chkInquilino.setSelected(false);
@@ -584,7 +593,12 @@ public class DlgMensualidades extends javax.swing.JDialog {
         txtBuscar.setText("");
         aplicarFiltro();
     }//GEN-LAST:event_chkMesActionPerformed
-
+    /**
+     * Activa el filtro por inquilino y desmarca los otros filtros (Mes, Año)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Inquilino
+     */
     private void chkInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkInquilinoActionPerformed
         if (chkInquilino.isSelected()) {
             chkMes.setSelected(false);
@@ -594,7 +608,12 @@ public class DlgMensualidades extends javax.swing.JDialog {
         txtBuscar.setText("");
         aplicarFiltro();// TODO add your handling code here:
     }//GEN-LAST:event_chkInquilinoActionPerformed
-
+    /**
+     * Activa el filtro por año y desmarca los otros filtros (Inquilino, Mes)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Año
+     */
     private void chkAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAnioActionPerformed
         if (chkAnio.isSelected()) {
             chkInquilino.setSelected(false);

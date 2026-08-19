@@ -9,17 +9,28 @@ import javax.swing.JOptionPane;
 import logica.Inquilino;
 
 /**
+ * Ventana de formulario para registrar o modificar inquilinos. Dos modos de
+ * operación: - Registrar nuevo: todos los campos editables, cédula se ingresa
+ * libre - Modificar existente: cédula no editable, se cargan los datos actuales
+ * y se permiten editar los demás campos.
  *
  * @author Deilyn Medrano
+ * @author Erry – Interfaz Terminada
+ * @version 1.0
  */
 public class DlgNewInquilinos extends javax.swing.JDialog {
+
     private Inquilino inquilino;
     private int operacion;
 
     /**
-     * Creates new form DlgNewInquilinos
+     * Constructor para NUEVO registro de inquilino. Abre la ventana en blanco
+     * con título"Registrar Inquilino"
+     *
+     * @param parent Ventana padre que invoca este diálogo.
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
-     public DlgNewInquilinos(java.awt.Frame parent, boolean modal) {
+    public DlgNewInquilinos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
@@ -27,6 +38,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         operacion = 0;
     }
 
+    /**
+     * Constructor para MODIFICAR un inquilino existente. Carga los datos del
+     * inquilino en los campos, desactiva edición de la cédula y cambia el
+     * título a "Modificar Inquilino".
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
+     * @param inq Objeto inquilino con los datos a modificar
+     */
     // ==== CONSTRUCTOR 2: MODIFICAR Inquilino ====
     public DlgNewInquilinos(java.awt.Frame parent, boolean modal, Inquilino inq) {
         super(parent, modal);
@@ -36,9 +56,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         this.inquilino = inq;
         operacion = 1;
         cargarDatosEnCampos();
-        }
-    
-     // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
+    }
+
+    /**
+     * Carga los datos del inquilino en los campos del formulario. Se usa SOLO
+     * en modo modificar: muestra cédula, nombre, dirección, teléfono, correo,
+     * ocupación, género y fecha de nacimiento. Además bloquea la edición de la
+     * cédula para que no se pueda cambiar.
+     */
+    // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
     private void cargarDatosEnCampos() {
         if (inquilino != null) {
             txtCedula.setText(inquilino.getCedInqui());
@@ -49,7 +75,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
             txtOcupacion.setText(inquilino.getOcupacion());
             cmbGenero.setSelectedItem(inquilino.getGenero());
             dtpFechNacimiento.setDate(inquilino.getFechNac());
-            txtCedula.setEditable(false); 
+            txtCedula.setEditable(false);
         }
     }
 
@@ -89,31 +115,31 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Datos de Inquilino");
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos de Inquilinos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial Black", 3, 14))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Datos de Inquilinos", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 12))); // NOI18N
 
         lblCedula.setText("Cédula:");
-        lblCedula.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblCedula.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblNombre.setText("Nombre:");
-        lblNombre.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblGenero.setText("Género:");
-        lblGenero.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblGenero.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblDireccion.setText("Dirección:");
-        lblDireccion.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblTelefono.setText("Teléfono:");
-        lblTelefono.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblTelefono.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblEmail.setText("E-mail:");
-        lblEmail.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblFechNacimiento.setText("Fecha Nacimiento:");
-        lblFechNacimiento.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblFechNacimiento.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         lblOcupacion.setText("Ocupación:");
-        lblOcupacion.setFont(new java.awt.Font("Arial Black", 3, 12)); // NOI18N
+        lblOcupacion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtCedula.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
@@ -121,7 +147,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
         dtpFechNacimiento.setFont(new java.awt.Font("Arial", 3, 14)); // NOI18N
 
-        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino" }));
+        cmbGenero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un género", "Femenino", "Masculino" }));
         cmbGenero.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtDireccion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -135,6 +161,11 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         txtEmail.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         txtOcupacion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
+        txtOcupacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtOcupacionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,12 +179,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
                             .addComponent(lblCedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                             .addComponent(lblGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtCedula)
-                                .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
-                            .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtCedula)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(cmbGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(lblFechNacimiento)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -165,12 +199,11 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
                     .addComponent(lblEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                        .addComponent(ftxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtDireccion)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                    .addComponent(txtDireccion)
+                    .addComponent(ftxtTelefono)
+                    .addComponent(txtOcupacion))
                 .addContainerGap(77, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -210,7 +243,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelar.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnCancelar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -222,7 +255,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
         btnLimpiar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/limpiar.png"))); // NOI18N
         btnLimpiar.setText("Limpiar");
-        btnLimpiar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnLimpiar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnLimpiar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnLimpiar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnLimpiar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -234,7 +267,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/guardar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setFont(new java.awt.Font("Arial Black", 3, 14)); // NOI18N
+        btnGuardar.setFont(new java.awt.Font("Arial", 2, 14)); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -249,40 +282,45 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
-                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(149, 149, 149)
-                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(154, 154, 154))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(60, 60, 60)
+                .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(314, 314, 314))
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(btnLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Acción al presionar el botón Guardar. Lee todos los campos, valida que
+     * los obligatorios no estén vacíos, y según el modo: - REGISTRAR: crea
+     * objeto nuevo, valida que la cédula no exista, agrega a la lista y cierra
+     * la ventana. - MODIFICAR: actualiza los campos del objeto existente,
+     * guarda cambios y cierra la ventana. Muestra mensajes de éxito o error
+     * según corresponda.
+     *
+     * @param evt Evento de acción al presionar el botón Guardar
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         try {
-            
+
             String cedula = txtCedula.getText().trim();
             String nombre = txtNombre.getText().trim();
             String genero = (String) cmbGenero.getSelectedItem();
@@ -294,15 +332,15 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
 
             // Validar obligatorios
             if (cedula.isEmpty() || nombre.isEmpty() || fechaNac == null) {
-                JOptionPane.showMessageDialog(this, 
-                    "️ Cédula, Nombre y Fecha son obligatorios");
+                JOptionPane.showMessageDialog(this,
+                        "️ Cédula, Nombre y Fecha son obligatorios");
                 return;
             }
 
             //  ==== NUEVO INQUILINO ====
             if (operacion == 0) {
-                Inquilino nuevo = new Inquilino(cedula, nombre, genero, 
-                    fechaNac, direccion, telefono, correo, ocupacion);
+                Inquilino nuevo = new Inquilino(cedula, nombre, genero,
+                        fechaNac, direccion, telefono, correo, ocupacion);
 
                 //  GUARDAR EN LA LISTA GLOBAL
                 if (datos.GuanaRent.agregarInquilino(nuevo)) {
@@ -311,8 +349,7 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(this, "️ Esa cédula ya existe");
                 }
-            }
-            //  ==== MODIFICAR ====
+            } //  ==== MODIFICAR ====
             else {
                 inquilino.setNomInqui(nombre);
                 inquilino.setGenero(genero);
@@ -329,19 +366,33 @@ public class DlgNewInquilinos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, " ERROR: " + e.getMessage());
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+    /**
+     * Acción al presionar el botón Limpiar. Borra todo el contenido de los
+     * campos y restablece el género a la primera opción del desplegable.
+     *
+     * @param evt Evento de acción al presionar Limpiar
+     */
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
-         txtCedula.setText("");
+        txtCedula.setText("");
         txtNombre.setText("");
         txtDireccion.setText("");
         txtEmail.setText("");
         ftxtTelefono.setText("");
         cmbGenero.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    /**
+     * Acción al presionar el botón Cancelar. Cierra la ventana sin guardar ni
+     * modificar nada.
+     *
+     * @param evt Evento de acción al presionar Cancelar
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       dispose();
+        dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtOcupacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtOcupacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtOcupacionActionPerformed
 
     /**
      * @param args the command line arguments
