@@ -9,7 +9,7 @@ import logica.Propietario;
 import logica.Vivienda;
 
 /**
- *
+ *Ventana de formulario para registrar o modificar viviendas.
  * @author Diego
  */
 public class DlgNewVivienda extends javax.swing.JDialog {
@@ -35,37 +35,42 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         setTitle("Modificar Vivienda");
         this.vivienda = vivienda;
         operacion = 2;
-        
+
         cargarDatosEnCampos();
     }
 
+    /**
+     * Carga en los campos del formulario los datos de la vivienda que se va a
+     * modificar (incluida la cédula de su propietario), y bloquea el campo
+     * idVivienda para que no pueda editarse en modo modificar.
+     */
     private void cargarDatosEnCampos() {
-    if (vivienda != null) {
+        if (vivienda != null) {
 
-        txtIdVivienda.setText(vivienda.getIdVivienda());
-        txtDescripcion.setText(vivienda.getDescripcion());
-        txtDireccion.setText(vivienda.getDireccion());
-        txtMtsConstruct.setText(String.valueOf(vivienda.getMtsConstruct()));
-        txtMtsLote.setText(String.valueOf(vivienda.getMtsLote()));
-        cmbTipoConstruccion.setSelectedItem(vivienda.getTipoConstruccion());
-        chkCochera.setSelected(vivienda.isCochera());
-        txtCantHabitac.setText(String.valueOf(vivienda.getCantHabitac()));
-        txtBanios.setText(String.valueOf(vivienda.getCantBanios()));
-        cmbCarretera.setSelectedItem(vivienda.getCarretera());
-        txtPrecioBase.setText(String.valueOf(vivienda.getPrecioBase()));
-        txtDeposiGarant.setText(String.valueOf(vivienda.getDepositoGarantia()));
-        cmbEstado.setSelectedItem(vivienda.getEstado());
+            txtIdVivienda.setText(vivienda.getIdVivienda());
+            txtDescripcion.setText(vivienda.getDescripcion());
+            txtDireccion.setText(vivienda.getDireccion());
+            txtMtsConstruct.setText(String.valueOf(vivienda.getMtsConstruct()));
+            txtMtsLote.setText(String.valueOf(vivienda.getMtsLote()));
+            cmbTipoConstruccion.setSelectedItem(vivienda.getTipoConstruccion());
+            chkCochera.setSelected(vivienda.isCochera());
+            txtCantHabitac.setText(String.valueOf(vivienda.getCantHabitac()));
+            txtBanios.setText(String.valueOf(vivienda.getCantBanios()));
+            cmbCarretera.setSelectedItem(vivienda.getCarretera());
+            txtPrecioBase.setText(String.valueOf(vivienda.getPrecioBase()));
+            txtDeposiGarant.setText(String.valueOf(vivienda.getDepositoGarantia()));
+            cmbEstado.setSelectedItem(vivienda.getEstado());
 
-        // Cargar cédula del propietario
-        if (vivienda.getPropietario() != null) {
-            txtPropietario.setText(
-                    vivienda.getPropietario().getCedPropiet()
-            );
+            // Cargar cédula del propietario
+            if (vivienda.getPropietario() != null) {
+                txtPropietario.setText(
+                        vivienda.getPropietario().getCedPropiet()
+                );
+            }
+
+            txtIdVivienda.setEditable(false);
         }
-
-        txtIdVivienda.setEditable(false);
     }
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -401,151 +406,166 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Valida y guarda los datos del formulario. Si operacion es 0 crea una
+     * vivienda nueva (validando que el propietario exista por cédula antes de
+     * asociarlo por agregación); si es distinto de 0, actualiza los datos de la
+     * vivienda existente. Muestra mensajes de éxito o error según corresponda y
+     * cierra la ventana al terminar.
+     *
+     * @param evt Evento al presionar el botón Guardar
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-       try{
-        String id = txtIdVivienda.getText().trim();
-        String descripcion = txtDescripcion.getText().trim();
-        String direccion = txtDireccion.getText().trim();
-        String cedulaPropietario = txtPropietario.getText().trim();
+        try {
+            String id = txtIdVivienda.getText().trim();
+            String descripcion = txtDescripcion.getText().trim();
+            String direccion = txtDireccion.getText().trim();
+            String cedulaPropietario = txtPropietario.getText().trim();
 
-        double mtsConstruct = Double.parseDouble(txtMtsConstruct.getText().trim());
-        double mtsLote = Double.parseDouble(txtMtsLote.getText().trim());
-        String tipoConstruccion = (String) cmbTipoConstruccion.getSelectedItem();
-        boolean cochera = chkCochera.isSelected();
-        int habitaciones = Integer.parseInt(txtCantHabitac.getText().trim());
-        double banios = Double.parseDouble(txtBanios.getText().trim());
-        String carretera = (String) cmbCarretera.getSelectedItem();
-        double precioBase = Double.parseDouble(txtPrecioBase.getText().trim());
-        double deposito = Double.parseDouble(txtDeposiGarant.getText().trim());
-        String estado = (String) cmbEstado.getSelectedItem();
+            double mtsConstruct = Double.parseDouble(txtMtsConstruct.getText().trim());
+            double mtsLote = Double.parseDouble(txtMtsLote.getText().trim());
+            String tipoConstruccion = (String) cmbTipoConstruccion.getSelectedItem();
+            boolean cochera = chkCochera.isSelected();
+            int habitaciones = Integer.parseInt(txtCantHabitac.getText().trim());
+            double banios = Double.parseDouble(txtBanios.getText().trim());
+            String carretera = (String) cmbCarretera.getSelectedItem();
+            double precioBase = Double.parseDouble(txtPrecioBase.getText().trim());
+            double deposito = Double.parseDouble(txtDeposiGarant.getText().trim());
+            String estado = (String) cmbEstado.getSelectedItem();
 
-        // ==========================================
-        // VALIDAR CAMPOS OBLIGATORIOS
-        // ==========================================
-        if (id.isEmpty()
-                || descripcion.isEmpty()
-                || direccion.isEmpty()
-                || cedulaPropietario.isEmpty()) {
-
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Complete todos los campos obligatorios.",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE
-            );
-            return;
-        }
-
-        // ==========================================
-        // BUSCAR PROPIETARIO POR CÉDULA
-        // ==========================================
-        Propietario propietario =
-                datos.GuanaRent.buscarPropietarioCed(cedulaPropietario);
-
-        // El propietario DEBE existir previamente
-        if (propietario == null) {
-
-            JOptionPane.showMessageDialog(this, """
-                                                La c\u00e9dula del propietario no existe en el registro de propietarios.
-                                                Debe registrar primero al propietario.""",
-                    "Propietario no encontrado",
-                    JOptionPane.WARNING_MESSAGE
-            );
-
-            txtPropietario.requestFocus();
-            return;
-        }
-
-        // ==========================================
-        // NUEVA VIVIENDA
-        // ==========================================
-        if (operacion == 0) {
-
-            Vivienda nueva = new Vivienda(
-                    id,
-                    descripcion,
-                    direccion,
-                    mtsConstruct,
-                    mtsLote,
-                    tipoConstruccion,
-                    cochera,
-                    habitaciones,
-                    banios,
-                    carretera,
-                    precioBase,
-                    deposito,
-                    propietario, // AGREGACIÓN
-                    estado
-            );
-
-            if (datos.GuanaRent.agregarVivienda(nueva)) {
+            // ==========================================
+            // VALIDAR CAMPOS OBLIGATORIOS
+            // ==========================================
+            if (id.isEmpty()
+                    || descripcion.isEmpty()
+                    || direccion.isEmpty()
+                    || cedulaPropietario.isEmpty()) {
 
                 JOptionPane.showMessageDialog(
                         this,
-                        "Vivienda registrada correctamente.",
+                        "Complete todos los campos obligatorios.",
+                        "Validación",
+                        JOptionPane.WARNING_MESSAGE
+                );
+                return;
+            }
+
+            // ==========================================
+            // BUSCAR PROPIETARIO POR CÉDULA
+            // ==========================================
+            Propietario propietario
+                    = datos.GuanaRent.buscarPropietarioCed(cedulaPropietario);
+
+            // El propietario DEBE existir previamente
+            if (propietario == null) {
+
+                JOptionPane.showMessageDialog(this, """
+                                                La c\u00e9dula del propietario no existe en el registro de propietarios.
+                                                Debe registrar primero al propietario.""",
+                        "Propietario no encontrado",
+                        JOptionPane.WARNING_MESSAGE
+                );
+
+                txtPropietario.requestFocus();
+                return;
+            }
+
+            // ==========================================
+            // NUEVA VIVIENDA
+            // ==========================================
+            if (operacion == 0) {
+
+                Vivienda nueva = new Vivienda(
+                        id,
+                        descripcion,
+                        direccion,
+                        mtsConstruct,
+                        mtsLote,
+                        tipoConstruccion,
+                        cochera,
+                        habitaciones,
+                        banios,
+                        carretera,
+                        precioBase,
+                        deposito,
+                        propietario, // AGREGACIÓN
+                        estado
+                );
+
+                if (datos.GuanaRent.agregarVivienda(nueva)) {
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Vivienda registrada correctamente.",
+                            "Éxito",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+
+                    this.dispose();
+
+                } else {
+
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "No se pudo registrar la vivienda.",
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+
+            } else {
+
+                // ==========================================
+                // MODIFICAR VIVIENDA
+                // ==========================================
+                vivienda.setDescripcion(descripcion);
+                vivienda.setDireccion(direccion);
+                vivienda.setMtsConstruct(mtsConstruct);
+                vivienda.setMtsLote(mtsLote);
+                vivienda.setTipoConstruccion(tipoConstruccion);
+                vivienda.setCochera(cochera);
+                vivienda.setCantHabitac(habitaciones);
+                vivienda.setCantBanios(banios);
+                vivienda.setCarretera(carretera);
+                vivienda.setPrecioBase(precioBase);
+                vivienda.setDepositoGarantia(deposito);
+                vivienda.setPropietario(propietario); // AGREGACIÓN
+                vivienda.setEstado(estado);
+
+                JOptionPane.showMessageDialog(
+                        this,
+                        "Vivienda modificada correctamente.",
                         "Éxito",
                         JOptionPane.INFORMATION_MESSAGE
                 );
 
                 this.dispose();
-
-            } else {
-
-                JOptionPane.showMessageDialog(
-                        this,
-                        "No se pudo registrar la vivienda.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE
-                );
             }
 
-        } else {
-
-            // ==========================================
-            // MODIFICAR VIVIENDA
-            // ==========================================
-            vivienda.setDescripcion(descripcion);
-            vivienda.setDireccion(direccion);
-            vivienda.setMtsConstruct(mtsConstruct);
-            vivienda.setMtsLote(mtsLote);
-            vivienda.setTipoConstruccion(tipoConstruccion);
-            vivienda.setCochera(cochera);
-            vivienda.setCantHabitac(habitaciones);
-            vivienda.setCantBanios(banios);
-            vivienda.setCarretera(carretera);
-            vivienda.setPrecioBase(precioBase);
-            vivienda.setDepositoGarantia(deposito);
-            vivienda.setPropietario(propietario); // AGREGACIÓN
-            vivienda.setEstado(estado);
-
+        } catch (NumberFormatException nfe) {
             JOptionPane.showMessageDialog(
                     this,
-                    "Vivienda modificada correctamente.",
-                    "Éxito",
-                    JOptionPane.INFORMATION_MESSAGE
+                    "Verifique que los campos numéricos sean correctos.",
+                    "Error de formato",
+                    JOptionPane.ERROR_MESSAGE
             );
 
-            this.dispose();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Error: " + ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE
+            );
         }
 
-    } catch (NumberFormatException nfe) { 
-    JOptionPane.showMessageDialog(
-        this,
-        "Verifique que los campos numéricos sean correctos.",
-        "Error de formato",
-        JOptionPane.ERROR_MESSAGE
-    );
-
-    } catch (Exception ex) { 
-    JOptionPane.showMessageDialog(
-        this,
-        "Error: " + ex.getMessage(),
-        "Error",
-        JOptionPane.ERROR_MESSAGE
-    );}
-
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+    /**
+     * Limpia todos los campos del formulario y los reinicia a sus valores por
+     * defecto. En modo registrar, además devuelve el foco al campo idVivienda.
+     *
+     * @param evt Evento al presionar el botón Limpiar
+     */
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtIdVivienda.setText("");
         txtDescripcion.setText("");
@@ -565,7 +585,11 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    /**
+     * Cierra la ventana sin guardar los cambios realizados.
+     *
+     * @param evt Evento al presionar el botón Cancelar
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose(); //Cierra la ventana
     }//GEN-LAST:event_btnCancelarActionPerformed

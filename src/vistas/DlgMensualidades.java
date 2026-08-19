@@ -14,7 +14,8 @@ import javax.swing.table.DefaultTableModel;
 import logica.Mensualidad;
 
 /**
- *
+ *Ventana de Dialogo para generar y 
+ * consultar mensualidades de alquiler
  * @author Erry
  */
 public class DlgMensualidades extends javax.swing.JDialog {
@@ -40,55 +41,31 @@ public class DlgMensualidades extends javax.swing.JDialog {
         datePicker1.setDate(hoy);
         datePicker1.setEnabled(false);
 
-        // Configurar DatePicker con la fecha actual
         datePicker1.setDate(hoy);
         datePicker1.setEnabled(false);
 
-        // Colocar el año actual
         txtAnioGenerar.setText(String.valueOf(hoy.getYear()));
         txtAnioMostrar.setText(String.valueOf(hoy.getYear()));
 
-        // Mostrar todas las mensualidades al abrir
         configurarFiltroTexto();
         mostrarTabla(GuanaRent.mostrarMensualidades());
-    }
-
-    /**
-     * Genera las mensualidades del mes y año seleccionados.
-     */
-    private void generarMensualidades() {
-        int mes = cmbMesGenerar.getSelectedIndex() + 1;
-        int anio;
-
-        try {
-            anio = Integer.parseInt(txtAnioGenerar.getText().trim());
-        } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this,
-                    "Ingrese un año válido de 4 dígitos.",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        if (anio < 1000 || anio > 9999) {
-            JOptionPane.showMessageDialog(this,
-                    "El año debe tener 4 dígitos.",
-                    "Validación",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-
-        GuanaRent.generarMensualidades(mes, anio);
-        mostrarTabla(GuanaRent.buscarMensualidades(mes, anio));
     }
 
     /**
      * Muestra las mensualidades del mes y año seleccionados.
      */
     private void mostrarMensualidades() {
-        int mes = cmbMesGenerar1.getSelectedIndex() + 1;
-        int anio;
+        int mes = cmbMesGenerar1.getSelectedIndex();
 
+        if (mes == 0) {
+            JOptionPane.showMessageDialog(this,
+                    "Seleccione un mes.",
+                    "Validación",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        int anio;
         try {
             anio = Integer.parseInt(txtAnioMostrar.getText().trim());
         } catch (NumberFormatException ex) {
@@ -112,16 +89,17 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
     /**
      * Aplica los filtros seleccionados mediante los JCheckBox. Si no se
-     * selecciona ningún filtro, muestra todos los registros.
+     * selecciona ningún filtro, o si el cuadro de búsqueda está vacío, muestra
+     * todos los registros.
      */
     private void aplicarFiltro() {
 
         String texto = txtBuscar.getText().trim().toLowerCase();
 
-        // Si no hay ningún filtro seleccionado
-        if (!chkInquilino.isSelected()
+        if ((!chkInquilino.isSelected()
                 && !chkMes.isSelected()
-                && !chkAnio.isSelected()) {
+                && !chkAnio.isSelected())
+                || texto.isEmpty()) {
 
             mostrarTabla(GuanaRent.mostrarMensualidades());
             return;
@@ -148,7 +126,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
             boolean coincide = false;
 
-            // FILTRO POR INQUILINO
             if (chkInquilino.isSelected()) {
 
                 if (m.getNomInquilino() != null
@@ -160,7 +137,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 }
             }
 
-            // FILTRO POR MES
             if (chkMes.isSelected()) {
 
                 int mes = m.getMesCobro();
@@ -175,7 +151,6 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 }
             }
 
-            // FILTRO POR AÑO
             if (chkAnio.isSelected()) {
 
                 String anio = String.valueOf(
@@ -235,6 +210,11 @@ public class DlgMensualidades extends javax.swing.JDialog {
         jTable1.setModel(modelo);
     }
 
+    /**
+     * Configura el filtro de búsqueda en tiempo real del campo de texto. Agrega
+     * un DocumentListener que ejecuta el filtrado automáticamente cada vez que
+     * el usuario escribe, borra o modifica el texto de búsqueda.
+     */
     private void configurarFiltroTexto() {
 
         txtBuscar.getDocument().addDocumentListener(
@@ -296,16 +276,16 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Generar mensualidades", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 12))); // NOI18N
 
-        lblFechaActual.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual.setText("Fecha actual:");
+        lblFechaActual.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         cmbMesGenerar.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
-        lblFechaActual1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual1.setText("Mes:");
+        lblFechaActual1.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        lblFechaActual2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual2.setText("Año:");
+        lblFechaActual2.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         btnGenerar.setText("Generar");
         btnGenerar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -363,8 +343,8 @@ public class DlgMensualidades extends javax.swing.JDialog {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Mostrar Mensualidades", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 3, 12))); // NOI18N
 
-        lblFechaActual3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual3.setText("Año:");
+        lblFechaActual3.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         btnMostrar.setText("Mostrar");
         btnMostrar.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
@@ -374,8 +354,8 @@ public class DlgMensualidades extends javax.swing.JDialog {
             }
         });
 
-        lblFechaActual5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual5.setText("Mes:");
+        lblFechaActual5.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
         cmbMesGenerar1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione un mes", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
@@ -413,27 +393,27 @@ public class DlgMensualidades extends javax.swing.JDialog {
                 .addComponent(btnMostrar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        lblFechaActual6.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblFechaActual6.setText("Filtrar por:");
+        lblFechaActual6.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
 
-        chkInquilino.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkInquilino.setText("Inquilino");
+        chkInquilino.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkInquilino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkInquilinoActionPerformed(evt);
             }
         });
 
-        chkMes.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkMes.setText("Mes");
+        chkMes.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkMesActionPerformed(evt);
             }
         });
 
-        chkAnio.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkAnio.setText("Año");
+        chkAnio.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         chkAnio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkAnioActionPerformed(evt);
@@ -510,9 +490,9 @@ public class DlgMensualidades extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -522,6 +502,15 @@ public class DlgMensualidades extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Genera las mensualidades del mes y año seleccionados para todos los
+     * alquileres vigentes. Valida que se haya elegido un mes y que el año
+     * ingresado sea válido (4 dígitos) antes de llamar a
+     * GuanaRent.generarMensualidades, y luego refresca la tabla con las
+     * mensualidades recién creadas.
+     *
+     * @param evt Evento al presionar el botón Generar
+     */
     private void btnGenerarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarActionPerformed
         int mes = cmbMesGenerar.getSelectedIndex();
 
@@ -566,15 +555,29 @@ public class DlgMensualidades extends javax.swing.JDialog {
         );
 
     }//GEN-LAST:event_btnGenerarActionPerformed
-
+    /**
+     * Muestra en la tabla las mensualidades correspondientes al mes y año
+     * indicados en el panel de consulta.
+     *
+     * @param evt Evento al presionar el botón Mostrar Mensualidades
+     */
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
         mostrarMensualidades();
     }//GEN-LAST:event_btnMostrarActionPerformed
-
+    /**
+     * Aplica el filtro de búsqueda al presionar Enter en el campo de texto.
+     *
+     * @param evt Evento al presionar Enter en el campo de búsqueda
+     */
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         aplicarFiltro();
     }//GEN-LAST:event_txtBuscarActionPerformed
-
+    /**
+     * Activa el filtro por mes y desmarca los otros filtros (Inquilino, Año)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Mes
+     */
     private void chkMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkMesActionPerformed
         if (chkMes.isSelected()) {
             chkInquilino.setSelected(false);
@@ -584,7 +587,12 @@ public class DlgMensualidades extends javax.swing.JDialog {
         txtBuscar.setText("");
         aplicarFiltro();
     }//GEN-LAST:event_chkMesActionPerformed
-
+    /**
+     * Activa el filtro por inquilino y desmarca los otros filtros (Mes, Año)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Inquilino
+     */
     private void chkInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkInquilinoActionPerformed
         if (chkInquilino.isSelected()) {
             chkMes.setSelected(false);
@@ -592,9 +600,14 @@ public class DlgMensualidades extends javax.swing.JDialog {
         }
 
         txtBuscar.setText("");
-        aplicarFiltro();// TODO add your handling code here:
+        aplicarFiltro();
     }//GEN-LAST:event_chkInquilinoActionPerformed
-
+    /**
+     * Activa el filtro por año y desmarca los otros filtros (Inquilino, Mes)
+     * para que solo uno esté activo a la vez, limpiando el campo de búsqueda.
+     *
+     * @param evt Evento al marcar/desmarcar el checkbox Año
+     */
     private void chkAnioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkAnioActionPerformed
         if (chkAnio.isSelected()) {
             chkInquilino.setSelected(false);

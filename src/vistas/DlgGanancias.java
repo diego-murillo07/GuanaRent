@@ -24,9 +24,9 @@ public class DlgGanancias extends javax.swing.JDialog {
     public DlgGanancias(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        rbAnioCompleto.setSelected(true);   // por defecto empieza en "Año completo"
-        cmbMesGenerar1.setEnabled(false);   // el combo de mes arranca apagado
-        lblResultadoGanancia.setText("");   // que no diga "jLabel4" al abrir
+        rbAnioCompleto.setSelected(true);
+        cmbMesGenerar1.setEnabled(false);
+        lblResultadoGanancia.setText("");
 
     }
 
@@ -227,7 +227,6 @@ public class DlgGanancias extends javax.swing.JDialog {
      */
     private void btnCalcularGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularGananciaActionPerformed
 
-// Validar que el año no esté vacío
         if (jTextField1.getText().trim().isEmpty()) {
             javax.swing.JOptionPane.showMessageDialog(this,
                     "Debe ingresar un año.", "Aviso",
