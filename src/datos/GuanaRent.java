@@ -491,7 +491,65 @@ public class GuanaRent {
      * @return ArrayList de alquileres.
      */
     public static ArrayList<Alquiler> mostrarAlquileres() {
+        actualizarEstadosAlquileres();
         return new ArrayList<>(listaAlquileres);
+    }
+
+    /**
+     * Actualiza automáticamente el estado de los alquileres según la fecha. Un
+     * alquiler "Vigente" cuyo contrato ya terminó (fecha de contrato más su
+     * cantidad de meses de vigencia es igual o anterior a hoy) pasa a
+     * "Vencido". Los "Cancelado" no se tocan.
+     */
+    public static void actualizarEstadosAlquileres() {
+
+        LocalDate hoy = LocalDate.now();
+
+        for (Alquiler a : listaAlquileres) {
+
+            if ("Cancelado".equalsIgnoreCase(a.getEstado())) {
+                continue;
+            }
+
+            if (a.getFechContrato() != null) {
+
+                LocalDate fin = a.getFechContrato()
+                        .plusMonths(a.getCantMeses());
+
+                if (!hoy.isBefore(fin)) {
+                    a.setEstado("Vencido");
+                } else {
+                    a.setEstado("Vigente");
+                }
+            }
+        }
+    }
+
+    /**
+     * Actualiza automáticamente el estado de las mensualidades según la fecha.
+     * Una mensualidad cuyo periodo (mes/año) ya cerró respecto a hoy se
+     * considera cobrada y pasa a "Cancelado"; las del mes actual o futuras
+     * quedan en "Pendiente".
+     */
+    public static void actualizarEstadosMensualidades() {
+
+        LocalDate hoy = LocalDate.now();
+        int anioActual = hoy.getYear();
+        int mesActual = hoy.getMonthValue();
+
+        for (Mensualidad m : listaMensualidades) {
+
+            boolean periodoCerrado
+                    = m.getAnioActual() < anioActual
+                    || (m.getAnioActual() == anioActual
+                    && m.getMesCobro() < mesActual);
+
+            if (periodoCerrado) {
+                m.setEstado("Cancelado");
+            } else {
+                m.setEstado("Pendiente");
+            }
+        }
     }
 
     // ==========================================================
@@ -559,6 +617,7 @@ public class GuanaRent {
             int anio) {
 
         LocalDate hoy = LocalDate.now();
+        actualizarEstadosAlquileres();
 
         if (mes < 1 || mes > 12) {
 
@@ -606,11 +665,17 @@ public class GuanaRent {
             double descuento
                     = obtenerDescuento(mes);
 
-            double monto
-                    = alq.getPrecioAlquiler()
-                    - (alq.getPrecioAlquiler()
-                    * descuento);
+            LocalDate fechaCobro = LocalDate.of(anio, mes, 1);
+            long aniosCumplidos = java.time.temporal.ChronoUnit.YEARS
+                    .between(alq.getFechContrato(), fechaCobro);
+            if (aniosCumplidos < 0) {
+                aniosCumplidos = 0;
+            }
 
+            double precioAjustado = alq.getPrecioAlquiler()
+                    * (1 + alq.getPorcIncremAnual() / 100.0 * aniosCumplidos);
+
+            double monto = precioAjustado - (precioAjustado * descuento);
             Mensualidad mensualidad
                     = new Mensualidad(
                             contMensualidad,
@@ -647,7 +712,7 @@ public class GuanaRent {
      */
     public static ArrayList<Mensualidad>
             buscarMensualidades(int mes, int anio) {
-
+        actualizarEstadosMensualidades();
         ArrayList<Mensualidad> resultado
                 = new ArrayList<>();
 
@@ -664,88 +729,13 @@ public class GuanaRent {
     }
 
     /**
-     * Busca mensualidades por nombre del inquilino.
-     *
-     * @param nombre nombre o parte del nombre.
-     * @return lista de mensualidades encontradas.
-     */
-    public static ArrayList<Mensualidad>
-            buscarMensualidadesInquilino(
-                    String nombre) {
-
-        ArrayList<Mensualidad> resultado
-                = new ArrayList<>();
-
-        if (nombre == null) {
-            return resultado;
-        }
-
-        for (Mensualidad m : listaMensualidades) {
-
-            if (m.getNomInquilino()
-                    .toLowerCase()
-                    .contains(nombre.toLowerCase())) {
-
-                resultado.add(m);
-            }
-        }
-
-        return resultado;
-    }
-
-    /**
-     * Filtra las mensualidades utilizando nombre, mes y año.
-     *
-     * @param nombre nombre del inquilino.
-     * @param mes mes de cobro.
-     * @param anio año de cobro.
-     * @return lista filtrada.
-     */
-    public static ArrayList<Mensualidad>
-            filtrarMensualidades(
-                    String nombre,
-                    int mes,
-                    int anio) {
-
-        ArrayList<Mensualidad> resultado
-                = new ArrayList<>();
-
-        for (Mensualidad m : listaMensualidades) {
-
-            boolean coincideNombre
-                    = nombre == null
-                    || nombre.trim().isEmpty()
-                    || m.getNomInquilino()
-                            .toLowerCase()
-                            .contains(nombre.toLowerCase());
-
-            boolean coincideMes
-                    = mes <= 0
-                    || m.getMesCobro() == mes;
-
-            boolean coincideAnio
-                    = anio <= 0
-                    || m.getAnioActual() == anio;
-
-            if (coincideNombre
-                    && coincideMes
-                    && coincideAnio) {
-
-                resultado.add(m);
-            }
-        }
-
-        return resultado;
-    }
-
-    /**
      * Obtiene todas las mensualidades.
      *
      * @return ArrayList de mensualidades.
      */
     public static ArrayList<Mensualidad>
             mostrarMensualidades() {
-
+        actualizarEstadosMensualidades();
         return new ArrayList<>(
                 listaMensualidades
         );
