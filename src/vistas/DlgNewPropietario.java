@@ -10,35 +10,66 @@ import logica.Inquilino;
 import logica.Propietario;
 
 /**
+ * Ventana de formulario para registrar o modificar propietarios. Dos modos de
+ * operación: - Registrar nuevo: todos los campos editables, cédula se ingresa
+ * libre - Modificar existente: cédula no editable, se cargan los datos actuales
+ * y se permiten editar los demás campos.
  *
  * @author Deilyn Medrano
+ * @version 1.0
  */
 public class DlgNewPropietario extends javax.swing.JDialog {
+
+    /**
+     * Referencia al propietario que se está modificando (null = nuevo)
+     */
     private Propietario propietario;
+
+    /**
+     * Tipo de operación: 0 = Registrar, 1 = Modificar
+     */
     private int operacion;
 
     /**
-     * Creates new form DlgNewPropietario
+     * Constructor para NUEVO registro de propietario. Abre la ventana en blanco
+     * con título "Registrar Propietario".
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgNewPropietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Registrar Propietario" );
+        setTitle("Registrar Propietario");
         operacion = 0;
     }
-    
-     public DlgNewPropietario(java.awt.Frame parent, boolean modal, logica.Propietario propietario) {
+
+    /**
+     * Constructor para MODIFICAR un propietario existente. Carga los datos del
+     * propietario en los campos, desactiva edición de la cédula y cambia el
+     * título a "Modificar Propietario".
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
+     * @param propietario Objeto propietario con los datos a modificar
+     */
+    public DlgNewPropietario(java.awt.Frame parent, boolean modal, logica.Propietario propietario) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        setTitle("Modificar Propietario" );
+        setTitle("Modificar Propietario");
         this.propietario = propietario;
-        operacion = 1 ;
+        operacion = 1;
         cargarDatosEnCampos();
     }
-    
-      // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
+
+    /**
+     * Carga los datos del propietario en los campos del formulario. Se usa SOLO
+     * en modo modificar: muestra cédula, nombre, dirección, teléfono, correo y
+     * género. Bloquea la edición de la cédula.
+     */
+    // ==== CARGAR DATOS EN LOS CAMPOS al MODIFICAR ====
     private void cargarDatosEnCampos() {
         if (propietario != null) {
             txtCedula.setText(propietario.getCedPropiet());
@@ -46,11 +77,10 @@ public class DlgNewPropietario extends javax.swing.JDialog {
             txtDireccion.setText(propietario.getDireccion());
             ftxtTelefono.setText(propietario.getTelefono());
             txtEmail.setText(propietario.getEmail());
-            cmbGenero.setSelectedItem(propietario.getGenero());        
-            txtCedula.setEditable(false); 
+            cmbGenero.setSelectedItem(propietario.getGenero());
+            txtCedula.setEditable(false);
         }
     }
-   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -245,27 +275,36 @@ public class DlgNewPropietario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+  /**
+     * Acción al presionar el botón Guardar. Lee todos los campos, valida que
+     * los obligatorios no estén vacíos, y según el modo: - REGISTRAR: crea
+     * objeto nuevo, valida que la cédula no exista, agrega a la lista y cierra
+     * la ventana. - MODIFICAR: actualiza los campos del objeto existente,
+     * guarda cambios y cierra la ventana. Muestra mensajes de éxito o error
+     * según corresponda.
+     *
+     * @param evt Evento de acción al presionar el botón Guardar
+     */
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-    try{
-         String cedula = txtCedula.getText().trim();
+        try {
+            String cedula = txtCedula.getText().trim();
             String nombre = txtNombre.getText().trim();
             String genero = (String) cmbGenero.getSelectedItem();
             String direccion = txtDireccion.getText().trim();
             String telefono = ftxtTelefono.getText().trim();
             String correo = txtEmail.getText().trim();
-            
-        // Validar obligatorios
+
+            // Validar obligatorios
             if (cedula.isEmpty() || nombre.isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "️ Cédula, Nombre y Fecha son obligatorios");
+                JOptionPane.showMessageDialog(this,
+                        "️ Cédula, Nombre y Fecha son obligatorios");
                 return;
             }
-            
-             //  ==== NUEVO INQUILINO ====
+
+            //  ==== NUEVO INQUILINO ====
             if (operacion == 0) {
-               Propietario nuevo = new Propietario(cedula, nombre, genero, 
-                     direccion, telefono, correo);
+                Propietario nuevo = new Propietario(cedula, nombre, genero,
+                        direccion, telefono, correo);
 
                 //  GUARDAR EN LA LISTA GLOBAL
                 if (datos.GuanaRent.agregarPropietario(nuevo)) {
@@ -274,25 +313,29 @@ public class DlgNewPropietario extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(this, "️ Esa cédula ya existe");
                 }
-            }
-            //  ==== MODIFICAR ====
+            } //  ==== MODIFICAR ====
             else {
                 propietario.setNomPropiet(nombre);
                 propietario.setGenero(genero);
-               
+
                 propietario.setDireccion(direccion);
                 propietario.setTelefono(telefono);
                 propietario.setEmail(correo);
-               
+
                 JOptionPane.showMessageDialog(this, "MODIFICADO");
                 this.dispose();
             }
-            
-    }catch (Exception e){
-        JOptionPane.showMessageDialog(this, " ERROR: " + e.getMessage());
-    }
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, " ERROR: " + e.getMessage());
+        }
+    }//GEN-LAST:event_btnGuardarActionPerformed
+    /**
+     * Acción al presionar el botón Limpiar. Borra todo el contenido de los
+     * campos y restablece el género a la primera opción del desplegable.
+     *
+     * @param evt Evento de acción al presionar Limpiar
+     */
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtCedula.setText("");
         txtNombre.setText("");
@@ -301,7 +344,12 @@ public class DlgNewPropietario extends javax.swing.JDialog {
         ftxtTelefono.setText("");
         cmbGenero.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
-
+    /**
+     * Acción al presionar el botón Cancelar. Cierra la ventana sin guardar ni
+     * modificar nada.
+     *
+     * @param evt Evento de acción al presionar Cancelar
+     */
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed

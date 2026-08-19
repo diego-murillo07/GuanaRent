@@ -9,27 +9,41 @@ import javax.swing.table.DefaultTableModel;
 import logica.Propietario;
 
 /**
+ * Ventana principal de gestión de propietarios. Muestra todos los dueños de
+ * viviendas registrados en una tabla, permite buscar, registrar nuevos, editar
+ * datos y eliminar registros.
  *
  * @author Deilyn Medrano
+ * @version 1.0
  */
 public class DlgMainPropietario extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgMainPropietario
+     * Crea la ventana principal de administración de propietarios. Inicializa
+     * los componentes gráficos, centra la ventana en pantalla, asigna el título
+     * y carga automáticamente la tabla con todos los registros.
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgMainPropietario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-          setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
         setTitle("Gestión de Propietarios");
-           cargarTabla();
+        cargarTabla();
     }
 
-   // CARGAR TABLA CON PROPIETARIOS
+    /**
+     * Carga y muestra todos los propietarios registrados en la tabla. Define
+     * las columnas con los datos personales, recorre la lista completa y llena
+     * cada fila. Muestra también la cantidad total.
+     */
+    // CARGAR TABLA CON PROPIETARIOS
     private void cargarTabla() {
         String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
-        
+
         // Recorrer lista de PROPIETARIOS
         for (Propietario prop : datos.GuanaRent.listaPropietarios) {
             Object[] fila = {
@@ -37,9 +51,9 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 prop.getNomPropiet(),
                 prop.getGenero(),
                 prop.getDireccion(),
-               prop.getTelefono(),
+                prop.getTelefono(),
                 prop.getEmail()
-                
+
             };
             modelo.addRow(fila);
         }
@@ -211,25 +225,37 @@ public class DlgMainPropietario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+ /**
+     * Abre la ventana para registrar un nuevo propietario. Al cerrar la ventana
+     * de registro, recarga la tabla para mostrar automáticamente el nuevo
+     * registro agregado.
+     *
+     * @param evt Evento de acción al presionar el botón Insertar
+     */
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
-    DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
-    dlg.setVisible(true);
-    cargarTabla();
+        DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true);
+        dlg.setVisible(true);
+        cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
-
+    /**
+     * Elimina el propietario seleccionado tras confirmación del usuario.
+     * Verifica la selección, obtiene la cédula, pide confirmación, elimina de
+     * la lista y recarga la tabla. Muestra mensajes de resultado.
+     *
+     * @param evt Evento de acción al presionar el botón Eliminar
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-         int fila = tblPropietario.getSelectedRow();
+        int fila = tblPropietario.getSelectedRow();
         if (fila == -1) {
             JOptionPane.showMessageDialog(this, "️ Seleccione un propietario de la tabla");
             return;
         }
         String cedula = tblPropietario.getValueAt(fila, 0).toString();
-        
+
         int confirmar = JOptionPane.showConfirmDialog(this,
                 "¿Eliminar al propietario con cédula: " + cedula + "?",
                 "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
-        
+
         if (confirmar == JOptionPane.YES_OPTION) {
             // Buscar y eliminar
             Propietario eliminar = null;
@@ -246,7 +272,14 @@ public class DlgMainPropietario extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Abre la ventana para modificar los datos del propietario seleccionado.
+     * Verifica que se haya seleccionado una fila, obtiene la cédula, busca el
+     * objeto en la lista y abre la ventana en modo edición. Al cerrar,
+     * actualiza la tabla con los cambios.
+     *
+     * @param evt Evento de acción al presionar el botón Editar
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int fila = tblPropietario.getSelectedRow();
         if (fila == -1) {
@@ -255,7 +288,7 @@ public class DlgMainPropietario extends javax.swing.JDialog {
         }
         // Obtener cédula de la fila seleccionada
         String cedula = tblPropietario.getValueAt(fila, 0).toString();
-        
+
         // Buscar el objeto Propietario
         Propietario seleccionado = null;
         for (Propietario prop : datos.GuanaRent.listaPropietarios) {
@@ -264,28 +297,34 @@ public class DlgMainPropietario extends javax.swing.JDialog {
                 break;
             }
         }
-        
+
         // Abrir diálogo en MODO MODIFICAR
         if (seleccionado != null) {
             DlgNewPropietario dlg = new DlgNewPropietario((java.awt.Frame) this.getParent(), true, seleccionado);
             dlg.setVisible(true);
-            cargarTabla(); 
+            cargarTabla();
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    /**
+     * Filtra y muestra en la tabla solo los propietarios que coincidan con el
+     * texto ingresado. Busca por cédula o nombre, ignorando mayúsculas y
+     * minúsculas.
+     *
+     * @param evt Evento al presionar Enter en el campo de búsqueda
+     */
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
-          String buscar = txtBuscar.getText().trim().toLowerCase();
+        String buscar = txtBuscar.getText().trim().toLowerCase();
         String[] columnas = {"Cédula", "Nombre", "Género", "Fec. Nac.", "Dirección", "Teléfono", "Correo", "Ocupación"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
-        
+
         // Filtrar por cédula o nombre
         for (Propietario prop : datos.GuanaRent.listaPropietarios) {
-            if (prop.getCedPropiet().contains(buscar) || 
-                prop.getNomPropiet().toLowerCase().contains(buscar)) {
+            if (prop.getCedPropiet().contains(buscar)
+                    || prop.getNomPropiet().toLowerCase().contains(buscar)) {
                 modelo.addRow(new Object[]{
-                    prop.getCedPropiet(), prop.getNomPropiet(),prop.getGenero(),
-                     prop.getDireccion(), prop.getTelefono(),
+                    prop.getCedPropiet(), prop.getNomPropiet(), prop.getGenero(),
+                    prop.getDireccion(), prop.getTelefono(),
                     prop.getEmail()
                 });
             }

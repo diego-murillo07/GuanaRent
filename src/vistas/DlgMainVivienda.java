@@ -8,13 +8,23 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
+ * Ventana principal de gestión de viviendas. Muestra todas las propiedades
+ * registradas en una tabla con sus datos de identificación, ubicación,
+ * características físicas y estado. Permite buscar, registrar nuevas viviendas,
+ * editar y eliminar.
  *
  * @author Diego
+ * @version 1.0
  */
 public class DlgMainVivienda extends javax.swing.JDialog {
 
     /**
-     * Creates new form DlgMainVivienda
+     * Crea la ventana principal de administración de viviendas. Inicializa los
+     * componentes gráficos, centra la ventana en pantalla, asigna el título y
+     * carga automáticamente la tabla con todos los registros.
+     *
+     * @param parent Ventana padre que invoca este diálogo
+     * @param modal Si es modal, bloquea la ventana padre hasta cerrar
      */
     public DlgMainVivienda(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -24,8 +34,15 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         cargarTabla();
     }
 
+    /**
+     * Carga y muestra todas las viviendas registradas en la tabla. Define las
+     * columnas con los datos de identificación, ubicación, medidas,
+     * características y estado. Recorre la lista completa y llena cada fila.
+     * Muestra también la cantidad total de registros.
+     */
     // ==== CARGAR TABLA ====
     private void cargarTabla() {
+        // Definir nombres de las columnas que se mostrarán en la tabla
         String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
             "M² Lote", "Tipo", "Habitaciones", "Precio Base", "Estado"};
         DefaultTableModel modelo = new DefaultTableModel(null, columnas);
@@ -206,13 +223,26 @@ public class DlgMainVivienda extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+/**
+     * Abre la ventana para registrar una nueva vivienda. Al cerrar la ventana
+     * de registro, recarga la tabla para mostrar automáticamente el nuevo
+     * registro agregado.
+     *
+     * @param evt Evento de acción al presionar el botón Insertar
+     */
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
         DlgNewVivienda dlg = new DlgNewVivienda((java.awt.Frame) this.getParent(), true);
         dlg.setVisible(true);
         cargarTabla();
     }//GEN-LAST:event_btnInsertarActionPerformed
-
+    /**
+     * Abre la ventana para modificar los datos de la vivienda seleccionada.
+     * Verifica que se haya seleccionado una fila, obtiene el identificador,
+     * busca el objeto en la lista y abre la ventana en modo edición. Al cerrar,
+     * actualiza la tabla con los cambios.
+     *
+     * @param evt Evento de acción al presionar el botón Editar
+     */
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         int fila = tblViviendas.getSelectedRow();
         if (fila == -1) {
@@ -237,7 +267,13 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnEditarActionPerformed
-
+    /**
+     * Elimina la vivienda seleccionada tras confirmación del usuario. Verifica
+     * la selección, obtiene el identificador, pide confirmación, elimina de la
+     * lista y recarga la tabla. Muestra mensaje de confirmación.
+     *
+     * @param evt Evento de acción al presionar el botón Eliminar
+     */
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         int fila = tblViviendas.getSelectedRow();
         if (fila == -1) {
@@ -266,7 +302,13 @@ public class DlgMainVivienda extends javax.swing.JDialog {
         }
 
     }//GEN-LAST:event_btnEliminarActionPerformed
-
+    /**
+     * Filtra y muestra en la tabla solo las viviendas que coincidan con el
+     * texto ingresado. Busca por identificador, descripción o dirección,
+     * ignorando mayúsculas y minúsculas.
+     *
+     * @param evt Evento al presionar Enter en el campo de búsqueda
+     */
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         String buscar = txtBuscar.getText().trim().toLowerCase();
         String[] columnas = {"ID", "Descripción", "Dirección", "M² Construc",
