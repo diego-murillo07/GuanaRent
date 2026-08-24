@@ -74,7 +74,7 @@ public class JFrmSistemaPrincipal extends javax.swing.JFrame {
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Sistema de Alquileres GuanaRenta");
+        setTitle("Sistema de Alquileres GuanaRent");
         setResizable(false);
 
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));

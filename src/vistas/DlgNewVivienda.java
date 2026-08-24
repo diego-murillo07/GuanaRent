@@ -155,6 +155,12 @@ public class DlgNewVivienda extends javax.swing.JDialog {
         lblCochera.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblCochera.setText("Posee cochera?:");
 
+        chkCochera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkCocheraActionPerformed(evt);
+            }
+        });
+
         lblDescripcion.setFont(new java.awt.Font("Arial", 3, 12)); // NOI18N
         lblDescripcion.setText("Descripción:");
 
@@ -593,6 +599,10 @@ public class DlgNewVivienda extends javax.swing.JDialog {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         this.dispose(); //Cierra la ventana
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void chkCocheraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkCocheraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkCocheraActionPerformed
 
     /**
      * @param args the command line arguments

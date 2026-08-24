@@ -230,9 +230,9 @@ public class DlgGanancias extends javax.swing.JDialog {
     private void btnCalcularGananciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularGananciaActionPerformed
 
         if (jTextField1.getText().trim().isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this,
+            JOptionPane.showMessageDialog(this,
                     "Debe ingresar un año.", "Aviso",
-                    javax.swing.JOptionPane.WARNING_MESSAGE);
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
 
@@ -242,7 +242,7 @@ public class DlgGanancias extends javax.swing.JDialog {
         } catch (NumberFormatException e) {
             javax.swing.JOptionPane.showMessageDialog(this,
                     "El año debe ser un número válido.", "Error",
-                    javax.swing.JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -252,7 +252,7 @@ public class DlgGanancias extends javax.swing.JDialog {
             resultado = datos.GuanaRent.calcularGananciasAnio(anio);
         } else {
             if (cmbMesGenerar1.getSelectedIndex() == 0) {
-                javax.swing.JOptionPane.showMessageDialog(this,
+                JOptionPane.showMessageDialog(this,
                         "Debe seleccionar un mes.", "Aviso",
                         JOptionPane.WARNING_MESSAGE);
                 return;
