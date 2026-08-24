@@ -67,7 +67,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" pref="179" max="-2" attributes="0"/>
                               <Component id="jLabel3" min="-2" pref="218" max="-2" attributes="0"/>
-                              <Component id="jLabel4" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
+                              <Component id="lblEnlaceGitHub" alignment="0" min="-2" pref="329" max="-2" attributes="0"/>
                               <Component id="jLabel5" alignment="0" min="-2" pref="95" max="-2" attributes="0"/>
                               <Component id="jLabel7" min="-2" pref="179" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
@@ -95,7 +95,7 @@
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblEnlaceGitHub" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -134,13 +134,19 @@
             <Property name="text" type="java.lang.String" value="Enlace del repositorio en Github:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
+        <Component class="javax.swing.JLabel" name="lblEnlaceGitHub">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Arial" size="14" style="2"/>
             </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="cc" green="33" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="https://github.com/diego-murillo07/GuanaRent.git"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblEnlaceGitHubMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
